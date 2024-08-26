@@ -14,14 +14,11 @@ axios.interceptors.response.use(null, (error) => {
     return Promise.reject(error);
 });
 
-function setCookie(cookie: never) {
-    axios.defaults.headers.common["x-auth-token"] = cookie;
-}
+axios.defaults.withCredentials = true;
 
 export default {
     get: axios.get,
     post: axios.post,
     put: axios.put,
     delete: axios.delete,
-    setCookie,
 };
