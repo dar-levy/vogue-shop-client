@@ -10,10 +10,11 @@ import RegisterForm from "./components/RegisterForm.tsx";
 import LogoutForm from "./components/LogoutForm.tsx";
 import LoginForm from './components/LoginForm.tsx';
 import Cookies from 'js-cookie';
+import About from './components/About.tsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const paletteType = darkMode ? 'dark' : 'light';
   const theme = createTheme({
@@ -41,12 +42,13 @@ function App() {
       <>
         <ToastContainer />
         <ThemeProvider theme={theme}>
-          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} isAuthenticated={isAuthenticated} />
           <Container>
             <Routes>
               {isAuthenticated ? (
                   <>
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/logout" element={<LogoutForm />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="/" element={<Navigate to="/catalog" />} />

@@ -6,12 +6,16 @@ const midLinks = [
     { title: 'catalog', path: '/catalog' },
     { title: 'about', path: '/about' },
     { title: 'contact', path: '/contact' }
-]
+];
 
-const rightLinks = [
+const rightAuthLinks = [
+    { title: 'logout', path: '/logout' },
+];
+
+const rightGuestLinks = [
     { title: 'login', path: '/login' },
     { title: 'register', path: '/register' },
-]
+];
 
 const navLinkStyles = {
     color: 'inherit',
@@ -23,14 +27,15 @@ const navLinkStyles = {
     '&.active': {
         color: 'text.secondary'
     }
-}
+};
 
 interface Props {
     darkMode: boolean;
     handleThemeChange: () => void;
+    isAuthenticated: boolean;
 }
 
-export default function Header({ handleThemeChange, darkMode }: Props) {
+export default function Header({ handleThemeChange, darkMode, isAuthenticated }: Props) {
     return (
         <AppBar position='static' sx={{ mb: 4 }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -46,27 +51,31 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
                     <Switch checked={darkMode} onChange={handleThemeChange} />
                 </Box>
 
-                <List sx={{ display: 'flex' }}>
-                    {midLinks.map(({ title, path }) => (
-                        <ListItem
-                            component={NavLink}
-                            to={path}
-                            key={path}
-                            sx={navLinkStyles}
-                        >
-                            {title.toUpperCase()}
-                        </ListItem>
-                    ))}
-                </List>
+                {isAuthenticated && (
+                    <List sx={{ display: 'flex' }}>
+                        {midLinks.map(({ title, path }) => (
+                            <ListItem
+                                component={NavLink}
+                                to={path}
+                                key={path}
+                                sx={navLinkStyles}
+                            >
+                                {title.toUpperCase()}
+                            </ListItem>
+                        ))}
+                    </List>
+                )}
 
                 <Box display='flex' alignItems='center'>
-                    <IconButton size='large' edge='start' color='inherit' sx={{ mr: 2 }}>
-                        <Badge badgeContent='4' color='secondary'>
-                            <ShoppingCart />
-                        </Badge>
-                    </IconButton>
+                    {isAuthenticated && (
+                        <IconButton size='large' edge='start' color='inherit' sx={{ mr: 2 }}>
+                            <Badge badgeContent='4' color='secondary'>
+                                <ShoppingCart />
+                            </Badge>
+                        </IconButton>
+                    )}
                     <List sx={{ display: 'flex' }}>
-                        {rightLinks.map(({ title, path }) => (
+                        {(isAuthenticated ? rightAuthLinks : rightGuestLinks).map(({ title, path }) => (
                             <ListItem
                                 component={NavLink}
                                 to={path}
@@ -81,5 +90,5 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
 
             </Toolbar>
         </AppBar>
-    )
+    );
 }
