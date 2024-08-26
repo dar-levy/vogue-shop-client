@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {Product} from "../../models/product.ts";
 import ProductsGrid from "./ProductsGrid.tsx";
-import {fakeProducts} from "../../services/httpService.ts";
+import {fakeProducts} from "../../services/fakeHttpService.ts";
 
 
 export default function Catalog() {
