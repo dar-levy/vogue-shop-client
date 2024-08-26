@@ -43,7 +43,7 @@ function App() {
               {/*      <ProtectedRoute path="/profiles/:id" component={ProfileForm} />*/}
               {/*    }*/}
               {/*/>*/}
-              <Route path="/catalog" element={<Catalog user={user} />} />
+              <Route path="/catalog" element={<Catalog />} />
               <Route path="/not-found" element={<NotFound />} />
               <Route path="/" element={<Navigate to="/catalog" />} />
               <Route path="*" element={<Navigate to="/not-found" />} />
