@@ -10,9 +10,9 @@ const apiEndpoint = config.apiUrl + '/auth';
 export async function login(email, password, rememberMe) {
     const { data } = await http.post(apiEndpoint, { email, password });
     if (rememberMe) {
-        Cookies.set('rememberMe', 'true', { expires: 10 }); // Expires in 10 days
+        Cookies.set('rememberMe', 'true', { expires: 10 });
     } else {
-        Cookies.set('rememberMe', 'true', { expires: 0.02083 }); // Expires in 30 minutes (0.02083 days)
+        Cookies.set('rememberMe', 'true', { expires: 0.02083 });
     }
 
     return data;
