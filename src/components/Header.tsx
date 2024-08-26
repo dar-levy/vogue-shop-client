@@ -10,7 +10,7 @@ export default function Header({handleThemeChange, darkMode}: Props) {
         <AppBar position='static' sx={{mb: 4}}>
             <Toolbar>
                 <Typography variant="h6">
-                    RE-STORE
+                    Vogue Shop
                 </Typography>
                 <Switch checked={darkMode} onChange={handleThemeChange}  />
             </Toolbar>
