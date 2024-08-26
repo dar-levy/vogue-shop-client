@@ -37,7 +37,10 @@ interface Props {
 
 export default function Header({ handleThemeChange, darkMode, isAuthenticated }: Props) {
     return (
-        <AppBar position='static' sx={{ mb: 4 }}>
+        <AppBar position='static' sx={{
+            mb: 4,
+            backgroundColor: darkMode ? '#1976d2' : 'default', // Blue color for dark mode, default for light mode
+        }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box display='flex' alignItems='center'>
                     <Typography
