@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Product} from "../../models/product.ts";
+import Products from "./Products.tsx";
 
 export default function Catalog() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -12,7 +13,7 @@ export default function Catalog() {
   
     return (
         <>
-            {/*<ProductList products={products} />*/}
+            <Products products={products} />
         </>
     )
 }
