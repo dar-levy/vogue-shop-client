@@ -11,3 +11,6 @@ export function getProducts() {
     return http.get(`${apiEndpoint}`);
 }
 
+export function getProduct(id: number) {
+    return http.get(productUrl(id));
+}
