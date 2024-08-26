@@ -7,7 +7,7 @@ export const fakeProducts: Product[] = [
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 20000,
-        pictureUrl: "../../public/products/sb-ang1.png",
+        pictureUrl: "../../images/products/sb-ang1.png",
         brand: "Angular",
         type: "Boards",
         quantityInStock: 100,
@@ -18,7 +18,7 @@ export const fakeProducts: Product[] = [
         description:
             "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
         price: 15000,
-        pictureUrl: "../../public/products/sb-ang2.png",
+        pictureUrl: "../../images/products/sb-ang2.png",
         brand: "Angular",
         type: "Boards",
         quantityInStock: 100,
@@ -29,7 +29,7 @@ export const fakeProducts: Product[] = [
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
         price: 18000,
-        pictureUrl: "../../public/products/sb-core1.png",
+        pictureUrl: "../../images/products/sb-core1.png",
         brand: "NetCore",
         type: "Boards",
         quantityInStock: 100,
@@ -40,7 +40,7 @@ export const fakeProducts: Product[] = [
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
         price: 30000,
-        pictureUrl: "../../public/products/sb-core2.png",
+        pictureUrl: "../../images/products/sb-core2.png",
         brand: "NetCore",
         type: "Boards",
         quantityInStock: 100,
@@ -51,7 +51,7 @@ export const fakeProducts: Product[] = [
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 25000,
-        pictureUrl: "../../public/products/sb-react1.png",
+        pictureUrl: "../../images/products/sb-react1.png",
         brand: "React",
         type: "Boards",
         quantityInStock: 100,
@@ -62,7 +62,7 @@ export const fakeProducts: Product[] = [
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 12000,
-        pictureUrl: "../../public/products/sb-ts1.png",
+        pictureUrl: "../../images/products/sb-ts1.png",
         brand: "TypeScript",
         type: "Boards",
         quantityInStock: 100,
@@ -73,7 +73,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1000,
-        pictureUrl: "../../public/products/hat-core1.png",
+        pictureUrl: "../../images/products/hat-core1.png",
         brand: "NetCore",
         type: "Hats",
         quantityInStock: 100,
@@ -84,7 +84,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 8000,
-        pictureUrl: "../../public/products/hat-react1.png",
+        pictureUrl: "../../images/products/hat-react1.png",
         brand: "React",
         type: "Hats",
         quantityInStock: 100,
@@ -95,7 +95,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1500,
-        pictureUrl: "../../public/products/hat-react2.png",
+        pictureUrl: "../../images/products/hat-react2.png",
         brand: "React",
         type: "Hats",
         quantityInStock: 100,
@@ -106,7 +106,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1800,
-        pictureUrl: "../../public/products/glove-code1.png",
+        pictureUrl: "../../images/products/glove-code1.png",
         brand: "VS Code",
         type: "Gloves",
         quantityInStock: 100,
@@ -117,7 +117,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1500,
-        pictureUrl: "../../public/products/glove-code2.png",
+        pictureUrl: "../../images/products/glove-code2.png",
         brand: "VS Code",
         type: "Gloves",
         quantityInStock: 100,
@@ -128,7 +128,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1600,
-        pictureUrl: "../../public/products/glove-react1.png",
+        pictureUrl: "../../images/products/glove-react1.png",
         brand: "React",
         type: "Gloves",
         quantityInStock: 100,
@@ -139,7 +139,7 @@ export const fakeProducts: Product[] = [
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 1400,
-        pictureUrl: "../../public/products/glove-react2.png",
+        pictureUrl: "../../images/products/glove-react2.png",
         brand: "React",
         type: "Gloves",
         quantityInStock: 100,
@@ -150,7 +150,7 @@ export const fakeProducts: Product[] = [
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
         price: 25000,
-        pictureUrl: "../../public/products/boot-redis1.png",
+        pictureUrl: "../../images/products/boot-redis1.png",
         brand: "Redis",
         type: "Boots",
         quantityInStock: 100,
@@ -161,7 +161,7 @@ export const fakeProducts: Product[] = [
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 18999,
-        pictureUrl: "../../public/products/boot-core2.png",
+        pictureUrl: "../../images/products/boot-core2.png",
         brand: "NetCore",
         type: "Boots",
         quantityInStock: 100,
@@ -172,7 +172,7 @@ export const fakeProducts: Product[] = [
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
         price: 19999,
-        pictureUrl: "../../public/products/boot-core1.png",
+        pictureUrl: "../../images/products/boot-core1.png",
         brand: "NetCore",
         type: "Boots",
         quantityInStock: 100,
@@ -182,7 +182,7 @@ export const fakeProducts: Product[] = [
         name: "Angular Purple Boots",
         description: "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
         price: 15000,
-        pictureUrl: "../../public/products/boot-ang2.png",
+        pictureUrl: "../../images/products/boot-ang2.png",
         brand: "Angular",
         type: "Boots",
         quantityInStock: 100,
@@ -193,7 +193,7 @@ export const fakeProducts: Product[] = [
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
         price: 18000,
-        pictureUrl: "../../public/products/boot-ang1.png",
+        pictureUrl: "../../images/products/boot-ang1.png",
         brand: "Angular",
         type: "Boots",
         quantityInStock: 100,

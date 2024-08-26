@@ -15,8 +15,6 @@ export default function Catalog() {
     }, [])
   
     return (
-        <>
-            <ProductsGrid products={products} />
-        </>
+        <ProductsGrid products={products} />
     )
 }
