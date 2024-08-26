@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Product} from "../../models/product.ts";
-import Products from "./Products.tsx";
+import ProductsGrid from "./ProductsGrid.tsx";
 
 export default function Catalog() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -13,7 +13,7 @@ export default function Catalog() {
   
     return (
         <>
-            <Products products={products} />
+            <ProductsGrid products={products} />
         </>
     )
 }
