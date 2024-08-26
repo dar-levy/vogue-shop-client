@@ -7,4 +7,7 @@ function productUrl(id: number) {
     return `${apiEndpoint}/${id}`;
 }
 
+export function getProducts() {
+    return http.get(`${apiEndpoint}`);
+}
 
