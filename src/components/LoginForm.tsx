@@ -1,4 +1,6 @@
-import React from "react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Navigate, useLocation } from "react-router-dom";
 import Joi from "joi-browser";
 import Form from "./common/form";

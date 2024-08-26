@@ -7,6 +7,8 @@ import {ToastContainer} from "react-toastify";
 import {Navigate, Route, Routes} from 'react-router-dom';
 import NotFound from './components/NotFound.tsx';
 import RegisterForm from "./components/RegisterForm.tsx";
+import LogoutForm from "./components/LogoutForm.tsx";
+import LoginForm from './components/LoginForm.tsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -36,8 +38,8 @@ function App() {
           <Container>
             <Routes>
               <Route path="/register" element={<RegisterForm />} />
-              {/*<Route path="/login" element={<LoginForm />} />*/}
-              {/*<Route path="/logout" element={<Logout />} />*/}
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/logout" element={<LogoutForm />} />
               {/*<Route*/}
               {/*    path="/profiles/:id"*/}
               {/*    element={*/}

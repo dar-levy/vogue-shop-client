@@ -1,7 +1,7 @@
 import { Component } from "react";
 import auth from "../services/authService";
 
-class Logout extends Component {
+class LogoutForm extends Component {
   componentDidMount() {
     auth.logout();
 
@@ -13,4 +13,4 @@ class Logout extends Component {
   }
 }
 
-export default Logout;
+export default LogoutForm;
