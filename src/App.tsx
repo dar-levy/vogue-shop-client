@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import Header from "./components/Header.tsx";
 import {ToastContainer} from "react-toastify";
 import {Navigate, Route, Routes} from 'react-router-dom';
+import NotFound from './components/NotFound.tsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
