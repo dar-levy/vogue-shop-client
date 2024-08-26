@@ -3,6 +3,8 @@ import {Container, createTheme, ThemeProvider} from "@mui/material";
 import Catalog from "./components/catalog/Catalog.tsx";
 import {useEffect, useState} from "react";
 import Header from "./components/Header.tsx";
+import {ToastContainer} from "react-toastify";
+import {Navigate, Route, Routes} from 'react-router-dom';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,11 +27,29 @@ function App() {
     }, [theme.palette.background.default]);
 
 
-    return (
-      <ThemeProvider theme={theme}>
-        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-        <Catalog />
-      </ThemeProvider>
+    return (<>
+        <ToastContainer />
+        <ThemeProvider theme={theme}>
+          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+          <Container>
+            <Routes>
+              {/*<Route path="/register" element={<RegisterForm />} />*/}
+              {/*<Route path="/login" element={<LoginForm />} />*/}
+              {/*<Route path="/logout" element={<Logout />} />*/}
+              {/*<Route*/}
+              {/*    path="/profiles/:id"*/}
+              {/*    element={*/}
+              {/*      <ProtectedRoute path="/profiles/:id" component={ProfileForm} />*/}
+              {/*    }*/}
+              {/*/>*/}
+              <Route path="/catalog" element={<Catalog user={user} />} />
+              <Route path="/not-found" element={<NotFound />} />
+              <Route path="/" element={<Navigate to="/catalog" />} />
+              <Route path="*" element={<Navigate to="/not-found" />} />
+            </Routes>
+          </Container>
+        </ThemeProvider>
+        </>
   )
 }
 
