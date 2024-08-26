@@ -10,6 +10,7 @@ import RegisterForm from "./components/RegisterForm.tsx";
 import LogoutForm from "./components/LogoutForm.tsx";
 import LoginForm from './components/LoginForm.tsx';
 import Cookies from 'js-cookie';
+import About from './components/About.tsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -47,6 +48,7 @@ function App() {
               {isAuthenticated ? (
                   <>
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/logout" element={<LogoutForm />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="/" element={<Navigate to="/catalog" />} />
