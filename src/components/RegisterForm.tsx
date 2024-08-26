@@ -64,7 +64,7 @@ class RegisterForm extends Form {
                 alignItems: 'center',
               }}
           >
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h3">
               Register
             </Typography>
             <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
