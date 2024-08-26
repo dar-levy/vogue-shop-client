@@ -1,15 +1,19 @@
-export const products = [
+import {Product} from "../models/product.ts";
+
+export const fakeProducts : Product[] = [
     {
+        id: 1,
         name: "Angular Speedster Board 2000",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 20000,
-        pictureUrl: "/images/products/sb-ang1.png",
+        pictureUrl: "images/products/sb-ang1.png",
         brand: "Angular",
         type: "Boards",
         quantityInStock: 100,
     },
     {
+        id: 2,
         name: "Green Angular Board 3000",
         description:
             "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
@@ -20,6 +24,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 3,
         name: "Core Board Speed Rush 3",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -30,6 +35,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 4,
         name: "Net Core Super Board",
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -40,6 +46,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 5,
         name: "React Board Super Whizzy Fast",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -50,6 +57,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 6,
         name: "Typescript Entry Board",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -60,6 +68,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 7,
         name: "Core Blue Hat",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -70,6 +79,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 8,
         name: "Green React Woolen Hat",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -80,6 +90,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 9,
         name: "Purple React Woolen Hat",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -90,6 +101,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 10,
         name: "Blue Code Gloves",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -100,6 +112,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 11,
         name: "Green Code Gloves",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -110,6 +123,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 12,
         name: "Purple React Gloves",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -120,6 +134,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 13,
         name: "Green React Gloves",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -130,6 +145,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 14,
         name: "Redis Red Boots",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -140,6 +156,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 15,
         name: "Core Red Boots",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -150,6 +167,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 16,
         name: "Core Purple Boots",
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -160,6 +178,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 17,
         name: "Angular Purple Boots",
         description: "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
         price: 15000,
@@ -169,6 +188,7 @@ export const products = [
         quantityInStock: 100,
     },
     {
+        id: 18,
         name: "Angular Blue Boots",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -179,4 +199,3 @@ export const products = [
         quantityInStock: 100,
     },
 ];
-
