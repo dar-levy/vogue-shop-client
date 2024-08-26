@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const paletteType = darkMode ? 'dark' : 'light';
   const theme = createTheme({
@@ -41,7 +41,7 @@ function App() {
       <>
         <ToastContainer />
         <ThemeProvider theme={theme}>
-          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} isAuthenticated={isAuthenticated} />
           <Container>
             <Routes>
               {isAuthenticated ? (
