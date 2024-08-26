@@ -3,23 +3,23 @@ import { Product } from "../models/product.ts";
 export const fakeProducts: Product[] = [
     {
         id: 1,
-        name: "Jordan Flight Heritage",
+        name: "Flight Heritage",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 349.90,
         pictureUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/589f5247-aa82-4cae-b154-4812e15a93c3/M+J+FLT+HRTG+DENIM+AOP+TOP.png",
-        brand: "Nike",
+        brand: "Jordan",
         type: "Men's Denim Top",
         quantityInStock: 100,
     },
     {
         id: 2,
-        name: "Jordan Brooklyn Fleece",
+        name: "Brooklyn Fleece",
         description:
             "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
         price: 199.90,
         pictureUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4a1675fe-847e-4307-babf-a4a307b953a6/M+J+ESS+FLC+PANT.png",
-        brand: "Nike",
+        brand: "Jordan",
         type: "Men's Trousers\n",
         quantityInStock: 100,
     },
@@ -113,7 +113,7 @@ export const fakeProducts: Product[] = [
     },
     {
         id: 11,
-        name: "F.C. Barcelona 2024/25 Stadium Home",
+        name: "F.C. Barcelona 2024/25",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 319.90,
@@ -135,7 +135,7 @@ export const fakeProducts: Product[] = [
     },
     {
         id: 13,
-        name: "Los Angeles Lakers Icon Edition 2022/23",
+        name: "Los Angeles Lakers 2022/23",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 419.90,
@@ -146,7 +146,7 @@ export const fakeProducts: Product[] = [
     },
     {
         id: 14,
-        name: "Paris Saint-Germain 2024/25 Stadium Home",
+        name: "Paris Saint-Germain 2024/25",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
         price: 399.90,
@@ -157,18 +157,18 @@ export const fakeProducts: Product[] = [
     },
     {
         id: 15,
-        name: "Jordan Flight MVP",
+        name: "Flight MVP",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
         price: 139.90,
         pictureUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/0f4e4362-3ecb-42c9-aad7-4d96d69bb09b/M+J+FLT+MVP+JM+SS+CREW.png",
-        brand: "Nike",
+        brand: "Jordan",
         type: "Men's T-Shirt",
         quantityInStock: 100,
     },
     {
         id: 16,
-        name: "Stephen Curry Golden State Warriors 2024 Select Series",
+        name: "Curry Golden State Warriors",
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
         price: 549.90,

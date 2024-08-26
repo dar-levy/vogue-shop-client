@@ -14,11 +14,14 @@ export default function ProductCard({ product }: Props) {
                 image={product.pictureUrl}
             />
             <CardContent>
-                <Typography gutterBottom color='secondary' variant="h5" component="div">
+                <Typography gutterBottom color='primary' variant="h5" component="div">
                     ₪{(product.price)}
                 </Typography>
+                <Typography variant="body2" color="text.primary">
+                    {product.brand} {product.name}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {product.brand} / {product.type}
+                    {product.type}
                 </Typography>
             </CardContent>
             <CardActions>
