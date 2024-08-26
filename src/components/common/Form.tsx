@@ -1,7 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Component } from "react";
 import Joi from "joi-browser";
-import Input from "./input";
-import Select from "./select";
+import Input from "./Input.tsx";
 
 class Form extends Component {
   state = {
@@ -53,21 +55,6 @@ class Form extends Component {
       <button disabled={this.validate()} className="btn btn-primary">
         {label}
       </button>
-    );
-  }
-
-  renderSelect(name, label, options) {
-    const { data, errors } = this.state;
-
-    return (
-      <Select
-        name={name}
-        value={data[name]}
-        label={label}
-        options={options}
-        onChange={this.handleChange}
-        error={errors[name]}
-      />
     );
   }
 
