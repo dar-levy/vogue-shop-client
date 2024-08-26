@@ -28,9 +28,7 @@ function App() {
     return (
       <ThemeProvider theme={theme}>
         <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-        <Container>
-          <Catalog />
-        </Container>
+        <Catalog />
       </ThemeProvider>
   )
 }
