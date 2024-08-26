@@ -6,6 +6,7 @@ import Header from "./components/Header.tsx";
 import {ToastContainer} from "react-toastify";
 import {Navigate, Route, Routes} from 'react-router-dom';
 import NotFound from './components/NotFound.tsx';
+import RegisterForm from "./components/RegisterForm.tsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -34,7 +35,7 @@ function App() {
           <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
           <Container>
             <Routes>
-              {/*<Route path="/register" element={<RegisterForm />} />*/}
+              <Route path="/register" element={<RegisterForm />} />
               {/*<Route path="/login" element={<LoginForm />} />*/}
               {/*<Route path="/logout" element={<Logout />} />*/}
               {/*<Route*/}
