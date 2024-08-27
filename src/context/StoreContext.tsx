@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState, useEffect } from 'react';
 import { Basket } from '../models/basket';
 import { Review } from '../models/review';
 import { NewArrival } from "../models/new-arrival.ts";
@@ -15,6 +15,7 @@ interface StoreContextValue {
     setNewArrivals: (newArrivals: NewArrival[]) => void;
     setProducts: (products: Product[]) => void;
     isAdmin: boolean;
+    isAuthenticated: boolean;
     reviews: Review[];
     newArrivals: NewArrival[];
     products: Product[];
@@ -38,7 +39,17 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [reviews, setReviews] = useState<Review[]>([]);
     const [newArrivals, setNewArrivals] = useState<NewArrival[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
-    const [isAdmin] = useState<boolean>(Cookies.get('isAdmin') === 'true');
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+    useEffect(() => {
+        const userCookie = Cookies.get('vogue-user');
+        if (userCookie) {
+            const user = JSON.parse(userCookie);
+            setIsAdmin(user.isAdmin);
+            setIsAuthenticated(user.isAuthenticated);
+        }
+    }, []);
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
@@ -73,7 +84,8 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             setNewArrivals,
             products,
             setProducts,
-            isAdmin
+            isAdmin,
+            isAuthenticated
         }}>
             {children}
         </StoreContext.Provider>
