@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from 'react-toastify';
-import {fakeBasket, fakeProducts, fakeReviews} from "./fakeHttpService.ts";
+import {fakeBasket, fakeNewArrivals, fakeProducts, fakeReviews} from "./fakeHttpService.ts";
 import config from '../config.json';
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
@@ -70,10 +70,15 @@ const Reviews = {
     get: () => fakeReviews
 }
 
+const NewArrivals = {
+    get: () => fakeNewArrivals
+}
+
 const agent = {
     Catalog,
     Basket,
-    Reviews
+    Reviews,
+    NewArrivals
 }
 
 export default agent;
