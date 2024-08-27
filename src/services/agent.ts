@@ -57,6 +57,7 @@ const Catalog = {
         // requests.get(`products/${id}`)
         fakeProducts.find(product => product.id === id),
     delete: (id: number) =>
+        // requests.del(`products/${id}`)
         fakeProducts.filter(product => product.id !== id),
 }
 

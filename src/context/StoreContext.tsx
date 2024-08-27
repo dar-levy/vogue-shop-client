@@ -3,6 +3,7 @@ import { Basket } from '../models/basket';
 import { Review } from '../models/review';
 import { NewArrival } from "../models/new-arrival.ts";
 import { Product } from "../models/product.ts";
+import Cookies from 'js-cookie';
 import agent from "../services/agent.ts";
 
 interface StoreContextValue {
@@ -13,6 +14,7 @@ interface StoreContextValue {
     setReviews: (reviews: Review[]) => void;
     setNewArrivals: (newArrivals: NewArrival[]) => void;
     setProducts: (products: Product[]) => void;
+    isAdmin: boolean;
     reviews: Review[];
     newArrivals: NewArrival[];
     products: Product[];
@@ -36,6 +38,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [reviews, setReviews] = useState<Review[]>([]);
     const [newArrivals, setNewArrivals] = useState<NewArrival[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
+    const [isAdmin] = useState<boolean>(Cookies.get('isAdmin') === 'true');
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
@@ -69,7 +72,8 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             newArrivals,
             setNewArrivals,
             products,
-            setProducts
+            setProducts,
+            isAdmin
         }}>
             {children}
         </StoreContext.Provider>
