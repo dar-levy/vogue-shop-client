@@ -34,7 +34,7 @@ export default function Checkout() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {basket?.items.length > 0 ? (
+                                {basket ? (
                                     basket.items.map((item) => (
                                         <TableRow key={item.productId}>
                                             <TableCell>{item.name}</TableCell>
@@ -55,7 +55,7 @@ export default function Checkout() {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    {basket?.items.length > 0 && (
+                    {basket && (
                         <>
                             <Box display="flex" justifyContent="space-between" mt={4}>
                                 <Typography variant="h6">Total</Typography>
@@ -67,6 +67,7 @@ export default function Checkout() {
                                 fullWidth
                                 onClick={handlePayment}
                                 sx={{ mt: 3 }}
+                                disabled={!basket}
                             >
                                 Pay Now
                             </Button>

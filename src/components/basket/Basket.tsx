@@ -109,7 +109,7 @@ export default function Basket() {
                         variant='contained'
                         size='large'
                         fullWidth
-                        disabled={basket?.items.length === 0}  // Disable checkout button if no items
+                        disabled={!basket} 
                     >
                         Checkout
                     </Button>
