@@ -1,16 +1,21 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import { Basket } from '../models/basket';
 import { Review } from '../models/review';
-import {NewArrival} from "../models/new-arrival.ts";
+import { NewArrival } from "../models/new-arrival.ts";
+import { Product } from "../models/product.ts";
+import agent from "../services/agent.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
+    handleRemoveItem: (productId: number) => void;
     setBasket: (basket: Basket) => void;
     clearItems: () => void;
     setReviews: (reviews: Review[]) => void;
-    setNewArrivals: (newArrivals: NewArrival[]) => void; // New function to set new arrivals
+    setNewArrivals: (newArrivals: NewArrival[]) => void;
+    setProducts: (products: Product[]) => void;
     reviews: Review[];
-    newArrivals: NewArrival[]; // NewArrivals in the context
+    newArrivals: NewArrival[];
+    products: Product[];
     basket: Basket | null;
 }
 
@@ -26,10 +31,11 @@ export function useStoreContext() {
     return context;
 }
 
-export function StoreProvider({children}: PropsWithChildren<unknown>) {
+export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [basket, setBasket] = useState<Basket | null>(null);
     const [reviews, setReviews] = useState<Review[]>([]);
-    const [newArrivals, setNewArrivals] = useState<NewArrival[]>([]);  // State for new arrivals
+    const [newArrivals, setNewArrivals] = useState<NewArrival[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
@@ -38,8 +44,13 @@ export function StoreProvider({children}: PropsWithChildren<unknown>) {
         if (itemIndex >= 0) {
             items[itemIndex].quantity -= quantity;
             if (items[itemIndex].quantity === 0) items.splice(itemIndex, 1);
-            setBasket(prevState => ({...prevState!, items}));
+            setBasket(prevState => ({ ...prevState!, items }));
         }
+    }
+
+    function handleRemoveItem(productId: number) {
+        const updatedProducts = agent.Catalog.delete(productId);
+        setProducts(updatedProducts);
     }
 
     function clearItems() {
@@ -51,11 +62,14 @@ export function StoreProvider({children}: PropsWithChildren<unknown>) {
             basket,
             setBasket,
             removeItem,
+            handleRemoveItem,
             clearItems,
             reviews,
             setReviews,
             newArrivals,
-            setNewArrivals
+            setNewArrivals,
+            products,
+            setProducts
         }}>
             {children}
         </StoreContext.Provider>

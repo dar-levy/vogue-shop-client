@@ -1,18 +1,23 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import {Product} from "../../models/product.ts";
-import {useState} from "react";
-import {useStoreContext} from "../../context/StoreContext.tsx";
+import { Button, Card, CardActions, CardContent, CardMedia, Typography, IconButton } from "@mui/material";
+import { Product } from "../../models/product.ts";
+import { useState } from "react";
+import { useStoreContext } from "../../context/StoreContext.tsx";
 import agent from "../../services/agent.ts";
 import LoadingButton from "@mui/lab/LoadingButton";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';  // Import Delete icon
+import Cookies from 'js-cookie';  // Import js-cookie to handle cookies
 
 interface Props {
     product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
-    const {setBasket} = useStoreContext();
+    const { setBasket, handleRemoveItem } = useStoreContext();
     const [loading, setLoading] = useState(false);
+
+    // Check if the user is an admin
+    const isAdmin = Cookies.get('isAdmin') === 'true';
 
     function handleAddItem(productId: number) {
         setLoading(true);
@@ -22,8 +27,13 @@ export default function ProductCard({ product }: Props) {
             .finally(() => setLoading(false))
     }
 
+    function handleDeleteClick() {
+        handleRemoveItem(product.id);
+    }
+
     return (
         <Card sx={{
+            position: 'relative',
             transition: "transform 0.3s, box-shadow 0.3s",
             '&:hover': {
                 transform: "scale(1.05)",
@@ -53,6 +63,19 @@ export default function ProductCard({ product }: Props) {
                     size="small">Add to Cart</LoadingButton>
                 <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
             </CardActions>
+            {isAdmin && (
+                <IconButton
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        bottom: 8,
+                        color: 'red',
+                    }}
+                    onClick={handleDeleteClick}
+                >
+                    <DeleteIcon />
+                </IconButton>
+            )}
         </Card>
     )
 }
