@@ -20,6 +20,7 @@ import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 import Checkout from "./components/Checkout.tsx";
 import ThankYou from "./components/ThankYou.tsx";
+import Reviews from "./components/Reviews.tsx";
 
 function App() {
   const { setBasket } = useStoreContext();
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/catalog/:id" element={<ProductDetails />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/reviews" element={<Reviews />} />
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/thank-you/:id" element={<ThankYou />} />

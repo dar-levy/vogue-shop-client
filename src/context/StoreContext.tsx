@@ -1,16 +1,18 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import { Basket } from '../models/basket';
+import Review from "../models/review.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
     setBasket: (basket: Basket) => void;
-    clearItems: () => void;  // New function to clear all items
+    clearItems: () => void;
+    setReviews: (reviews: Review[]) => void; // New function to set reviews
+    reviews: Review[]; // Add reviews to the context
     basket: Basket | null;
 }
 
 export const StoreContext = createContext<StoreContextValue | undefined>(undefined);
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useStoreContext() {
     const context = useContext(StoreContext);
 
@@ -23,32 +25,25 @@ export function useStoreContext() {
 
 export function StoreProvider({children}: PropsWithChildren<unknown>) {
     const [basket, setBasket] = useState<Basket | null>(null);
+    const [reviews, setReviews] = useState<Review[]>([]);  // State for reviews
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
-        const items = [...basket.items]; // new array of items
+        const items = [...basket.items];
         const itemIndex = items.findIndex(i => i.productId === productId);
         if (itemIndex >= 0) {
             items[itemIndex].quantity -= quantity;
             if (items[itemIndex].quantity === 0) items.splice(itemIndex, 1);
-            setBasket(prevState => {
-                return {...prevState!, items}
-            })
+            setBasket(prevState => ({...prevState!, items}));
         }
     }
 
     function clearItems() {
-        if (!basket) return;
-        console.log('Clearing items from the basket');
-        // setBasket(prevBasket => ({
-        //     ...prevBasket!,
-        //     items: []
-        // }));
         setBasket(null);
     }
 
     return (
-        <StoreContext.Provider value={{basket, setBasket, removeItem, clearItems}}>
+        <StoreContext.Provider value={{basket, setBasket, removeItem, clearItems, reviews, setReviews}}>
             {children}
         </StoreContext.Provider>
     );
