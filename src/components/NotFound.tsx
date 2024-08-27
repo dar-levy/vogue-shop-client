@@ -10,7 +10,7 @@ const NotFound = () => {
 
   return (
       <Container sx={{ textAlign: 'center', marginTop: '100px' }}>
-        <Typography variant="h2" component="h1" gutterBottom>
+        <Typography variant="h2" component="h1" gutterBottom color="text.primary">
           404: Page Not Found
         </Typography>
         <Typography variant="h6" color="textSecondary" paragraph>

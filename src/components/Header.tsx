@@ -1,6 +1,7 @@
 import { ShoppingCart } from '@mui/icons-material';
 import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
-import { NavLink } from 'react-router-dom';
+import {Link, NavLink } from 'react-router-dom';
+import logo from "../shop.png"
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -43,6 +44,13 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box display='flex' alignItems='center'>
+                    <Link className="navbar-brand" to="/catalog">
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: 40, height: 40, marginRight: 10 }}
+                        />
+                    </Link>
                     <Typography
                         variant='h6'
                         component={NavLink}
