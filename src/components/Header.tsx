@@ -79,8 +79,15 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
 
                 <Box display='flex' alignItems='center'>
                     {isAuthenticated && (
-                        <IconButton size='large' edge='start' color='inherit' sx={{ mr: 2 }}>
-                            <Badge badgeContent='4' color='secondary'>
+                        <IconButton
+                            component={NavLink}
+                            to="/basket"
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            sx={{ mr: 2 }}
+                        >
+                            <Badge badgeContent="4" color="secondary">
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Grid, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Add, Delete, Remove } from '@mui/icons-material';
 import { useState } from 'react';
 import {useStoreContext} from "../../context/StoreContext.tsx";
@@ -60,7 +60,7 @@ export default function Basket() {
                                         <span>{item.name}</span>
                                     </Box>
                                 </TableCell>
-                                <TableCell align="right">${(item.price / 100).toFixed(2)}</TableCell>
+                                <TableCell align="right">₪{item.price}</TableCell>
                                 <TableCell align="center">
                                     <LoadingButton
                                         color='error'
@@ -78,7 +78,7 @@ export default function Basket() {
                                         <Add />
                                     </LoadingButton>
                                 </TableCell>
-                                <TableCell align="right">${((item.price / 100) * item.quantity).toFixed(2)}</TableCell>
+                                <TableCell align="right">₪{item.price * item.quantity}</TableCell>
                                 <TableCell align="right">
                                     <LoadingButton
                                         loading={status.loading && status.name === 'del' + item.productId}

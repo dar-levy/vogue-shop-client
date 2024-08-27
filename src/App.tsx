@@ -19,7 +19,7 @@ import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 
 function App() {
-  const {setBasket} = useStoreContext();
+  const { setBasket } = useStoreContext();
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -36,11 +36,11 @@ function App() {
 
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.background.default;
+    setIsAuthenticated(true)
+    setBasket(agent.Basket.get())
+    setLoading(false)
     const buyerId = getCookie('buyerId');
     if (buyerId) {
-      setIsAuthenticated(true)
-      setBasket(agent.Basket.get())
-      setLoading(false)
       // agent.Basket.get()
       //     .then(basket => setBasket(basket))
       //     .catch(error => console.log(error))

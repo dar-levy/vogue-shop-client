@@ -1,5 +1,5 @@
 import { Product } from "../models/product.ts";
-import {Basket, BasketItem} from "../models/basket.ts";
+import { Basket } from "../models/basket.ts";
 
 export const fakeProducts: Product[] = [
     {
@@ -201,7 +201,7 @@ export const fakeProducts: Product[] = [
     },
 ];
 
-export let fakeBasket: Basket = {
+export const fakeBasket: Basket = {
     id: 313418857,
     buyerId: "Dar",
     items: [
