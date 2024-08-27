@@ -35,6 +35,11 @@ const Reviews: React.FC = () => {
                 <Paper
                     key={review.id}
                     sx={{
+                        '&:hover': {
+                        backgroundColor: '#f9f3b3',
+                        transform: 'scale(1.05)',
+                        transition: 'transform 0.2s ease-in-out',
+                        },
                         width: '250px',
                         padding: '15px',
                         boxShadow: 3,
