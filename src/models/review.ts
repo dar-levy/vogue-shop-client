@@ -1,5 +1,6 @@
-export default interface Review {
-    id: number,
-    description: string,
-    author: string,
+export interface Review {
+    id: number;
+    description: string;
+    author: string;
+    rating: number;
 }

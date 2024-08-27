@@ -1,57 +1,70 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import React, { useEffect } from 'react';
-import { Tabs, Tab, Box, Typography } from '@mui/material';
-import {useStoreContext} from "../context/StoreContext.tsx";
+import { Box, Paper, Typography, Rating } from '@mui/material';
+import { useStoreContext } from '../context/StoreContext';
 
 export interface Review {
     id: number;
     description: string;
     author: string;
+    rating: number;
 }
 
-const ReviewsTab: React.FC = () => {
+const Reviews: React.FC = () => {
     const { reviews, setReviews } = useStoreContext();
-    const [value, setValue] = React.useState(0);
 
     useEffect(() => {
+        // Simulate fetching 10 reviews from an API
         const fetchedReviews: Review[] = [
-            { id: 1, description: 'Great product!', author: 'Alice' },
-            { id: 2, description: 'Not bad.', author: 'Bob' },
-            { id: 3, description: 'Could be better.', author: 'Charlie' }
+            { id: 1, description: 'Great product! Loved the experience.', author: 'Alice', rating: 4.5 },
+            { id: 2, description: 'The product was decent but could be improved.', author: 'Bob', rating: 3.5 },
+            { id: 3, description: 'Not satisfied. Expected better quality.', author: 'Charlie', rating: 2.5 },
+            { id: 4, description: 'Amazing! Will buy again.', author: 'David', rating: 5 },
+            { id: 5, description: 'Pretty good, but room for improvement.', author: 'Eve', rating: 4 },
+            { id: 6, description: 'Not what I expected.', author: 'Frank', rating: 2 },
+            { id: 7, description: 'Worth every penny!', author: 'Grace', rating: 5 },
+            { id: 8, description: 'Mediocre, could be better.', author: 'Hank', rating: 3 },
+            { id: 9, description: 'Really loved it, would recommend!', author: 'Ivy', rating: 4.5 },
+            { id: 10, description: 'It was okay, but I’ve seen better.', author: 'John', rating: 3 },
         ];
-        setReviews(fetchedReviews);
+        setReviews(fetchedReviews);  // Store reviews in the context
     }, [setReviews]);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
     return (
-        <Box sx={{ width: '100%' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="Reviews Tabs">
-                {reviews.map((review, index) => (
-                    <Tab label={`Review ${index + 1}`} key={review.id} />
-                ))}
-            </Tabs>
-            {reviews.map((review, index) => (
-                <TabPanel value={value} index={index} key={review.id}>
-                    <Typography variant="h6">{review.author}</Typography>
-                    <Typography>{review.description}</Typography>
-                </TabPanel>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                width: '100%',
+                minHeight: '80vh',
+                padding: '20px',
+                gap: '20px', // Adds space between the notes
+            }}
+        >
+            {reviews.map((review) => (
+                <Paper
+                    key={review.id}
+                    sx={{
+                        width: '250px',
+                        padding: '15px',
+                        boxShadow: 3,
+                        transform: `rotate(${Math.random() * 10 - 5}deg)`, // Adds a slight random rotation
+                        backgroundColor: '#fffde7',
+                        borderRadius: '5px',
+                    }}
+                >
+                    <Typography variant="body1" sx={{ fontStyle: 'italic', marginBottom: '10px' }}>
+                        "{review.description}"
+                    </Typography>
+                    <Rating name="read-only" value={review.rating} precision={0.5} readOnly />
+                    <Typography variant="body2" sx={{ textAlign: 'right', fontWeight: 'bold', marginTop: '10px' }}>
+                        - {review.author}
+                    </Typography>
+                </Paper>
             ))}
         </Box>
     );
 };
 
-// TabPanel component to show the content of each tab
-const TabPanel: React.FC<{ value: number, index: number }> = ({ value, index, children }) => {
-    return (
-        <div role="tabpanel" hidden={value !== index}>
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-};
-
-export default ReviewsTab;
+export default Reviews;
