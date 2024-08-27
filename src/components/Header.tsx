@@ -8,7 +8,8 @@ const midLinks = [
     { title: 'catalog', path: '/catalog' },
     { title: 'about', path: '/about' },
     { title: 'contact', path: '/contact' },
-    { title: 'reviews', path: '/reviews' }
+    { title: 'reviews', path: '/reviews' },
+    { title: 'new-arrivals', path: '/new-arrivals' }
 ];
 
 const rightAuthLinks = [

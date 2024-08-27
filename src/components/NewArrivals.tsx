@@ -20,7 +20,7 @@ export const NewArrivals: React.FC = () => {
             { id: 9, name: 'New Product 9', description: 'Description 9', pictureUrl: '/images/prod9.png', brand: 'Brand 9', type: 'Type 9', arrivalDate: new Date('2024-08-09') },
             { id: 10, name: 'New Product 10', description: 'Description 10', pictureUrl: '/images/prod10.png', brand: 'Brand 10', type: 'Type 10', arrivalDate: new Date('2024-08-10') },
         ];
-        setNewArrivals(fetchedNewArrivals);
+        setNewArrivals(fetchedNewArrivals);  // Store new arrivals in the context
     }, [setNewArrivals]);
 
     return (
@@ -36,11 +36,30 @@ export const NewArrivals: React.FC = () => {
             }}
         >
             {newArrivals.map((product) => (
-                <Box key={product.id} sx={{ textAlign: 'center', margin: '20px' }}>
+                <Box
+                    key={product.id}
+                    sx={{
+                        textAlign: 'center',
+                        margin: '20px',
+                        '&:hover': {
+                            transform: 'scale(1.1)',
+                            transition: 'transform 0.3s ease-in-out',
+                        },
+                    }}
+                >
                     <Avatar
                         src={product.pictureUrl}
                         alt={product.name}
-                        sx={{ width: 150, height: 150, margin: '0 auto', boxShadow: 3 }}
+                        sx={{
+                            width: 250,
+                            height: 250,
+                            margin: '0 auto',
+                            boxShadow: 3,
+                            '&:hover': {
+                                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.3)',
+                                transition: 'box-shadow 0.3s ease-in-out',
+                            }
+                        }}
                     />
                     <Typography variant="h6" sx={{ marginTop: '10px' }}>
                         {product.name}
