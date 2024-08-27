@@ -46,8 +46,8 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         const userCookie = Cookies.get('vogue-user');
         if (userCookie) {
             const user = JSON.parse(userCookie);
+            setIsAuthenticated(true);
             setIsAdmin(user.isAdmin);
-            setIsAuthenticated(user.isAuthenticated);
         }
     }, []);
 
