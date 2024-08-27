@@ -1,11 +1,27 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import {Product} from "../../models/product.ts";
+import {useState} from "react";
+import {useStoreContext} from "../../context/StoreContext.tsx";
+import agent from "../../services/agent.ts";
+import LoadingButton from "@mui/lab/LoadingButton";
+import {Link} from "react-router-dom";
 
 interface Props {
     product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
+    const {setBasket} = useStoreContext();
+    const [loading, setLoading] = useState(false);
+
+    function handleAddItem(productId: number) {
+        setLoading(true);
+        agent.Basket.addItem(productId)
+            .then(basket => setBasket(basket))
+            .catch(error => console.log(error))
+            .finally(() => setLoading(false))
+    }
+
     return (
         <Card sx={{
             transition: "transform 0.3s, box-shadow 0.3s",
@@ -31,8 +47,11 @@ export default function ProductCard({ product }: Props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Add to Cart</Button>
-                <Button size="small">View</Button>
+                <LoadingButton
+                    loading={loading}
+                    onClick={() => handleAddItem(product.id)}
+                    size="small">Add to Cart</LoadingButton>
+                <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
             </CardActions>
         </Card>
     )
