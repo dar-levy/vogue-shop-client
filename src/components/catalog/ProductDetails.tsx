@@ -1,19 +1,18 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
-import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
+import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography, IconButton } from '@mui/material';
 import { useState, useEffect, ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
-import {Product} from "../../models/product.ts";
+import { useParams, useNavigate } from 'react-router-dom';
+import { Product } from "../../models/product.ts";
 import agent from "../../services/agent.ts";
 import { LoadingButton } from '@mui/lab';
-import {useStoreContext} from "../../context/StoreContext.tsx";
+import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
 import Loading from '../Loading.tsx';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
-    const { basket, setBasket, removeItem } = useStoreContext();
+    const navigate = useNavigate(); // Use navigate to redirect after deletion
+    const { basket, setBasket, removeItem, handleRemoveItem, isAdmin } = useStoreContext();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
@@ -23,13 +22,9 @@ export default function ProductDetails() {
     useEffect(() => {
         if (item) setQuantity(item.quantity);
         if (id) {
-            setProduct(agent.Catalog.details(parseInt(id)))
-            setLoading(false)
+            setProduct(agent.Catalog.details(parseInt(id)));
+            setLoading(false);
         }
-        // id && agent.Catalog.details(parseInt(id))
-        //     .then(response => setProduct(response))
-        //     .catch(error => console.log(error.response))
-        //     .finally(() => setLoading(false))
     }, [id, item]);
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -55,6 +50,12 @@ export default function ProductDetails() {
         }
     }
 
+    function handleDeleteProduct() {
+        if (!product) return;
+        handleRemoveItem(product.id);
+        navigate('/catalog');  // Redirect to catalog after deletion
+    }
+
     if (loading) return <Loading message='Loading product...' />
 
     if (!product) return <NotFound />
@@ -65,9 +66,13 @@ export default function ProductDetails() {
                 <img src={product.pictureUrl} alt={product.name} style={{ width: '100%' }} />
             </Grid>
             <Grid item xs={6}>
-                <Typography variant='h3' color="text.primary">{product.name}</Typography>
+                <Typography variant='h3' color="text.primary">
+                    {product.name}
+                </Typography>
                 <Divider sx={{ mb: 2 }} />
-                <Typography variant='h4' color='secondary'>₪{product.price}</Typography>
+                <Typography variant='h4' color='secondary'>
+                    ₪{product.price}
+                </Typography>
                 <TableContainer>
                     <Table>
                         <TableBody sx={{ fontSize: '1.1em' }}>
@@ -94,7 +99,7 @@ export default function ProductDetails() {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} alignItems="center">
                     <Grid item xs={6}>
                         <TextField
                             onChange={handleInputChange}
@@ -105,7 +110,7 @@ export default function ProductDetails() {
                             value={quantity}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         <LoadingButton
                             disabled={item?.quantity === quantity || !item && quantity === 0}
                             loading={submitting}
@@ -118,6 +123,20 @@ export default function ProductDetails() {
                             {item ? 'Update Quantity' : 'Add to Cart'}
                         </LoadingButton>
                     </Grid>
+                    {isAdmin && (
+                        <Grid item xs={2}>
+                            <IconButton
+                                sx={{
+                                    height: '55px',
+                                    width: '55px',
+                                    color: 'red',
+                                }}
+                                onClick={handleDeleteProduct}
+                            >
+                                <DeleteIcon />
+                            </IconButton>
+                        </Grid>
+                    )}
                 </Grid>
             </Grid>
         </Grid>
