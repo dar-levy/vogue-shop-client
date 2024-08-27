@@ -9,7 +9,7 @@ const midLinks = [
     { title: 'about', path: '/about' },
     { title: 'contact', path: '/contact' },
     { title: 'reviews', path: '/reviews' },
-    { title: 'new-arrivals', path: '/new-arrivals' }
+    { title: 'arrivals', path: '/new-arrivals' }
 ];
 
 const rightAuthLinks = [
