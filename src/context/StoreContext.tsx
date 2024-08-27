@@ -1,13 +1,16 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import { Basket } from '../models/basket';
-import Review from "../models/review.ts";
+import { Review } from '../models/review';
+import {NewArrival} from "../models/new-arrival.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
     setBasket: (basket: Basket) => void;
     clearItems: () => void;
-    setReviews: (reviews: Review[]) => void; // New function to set reviews
-    reviews: Review[]; // Add reviews to the context
+    setReviews: (reviews: Review[]) => void;
+    setNewArrivals: (newArrivals: NewArrival[]) => void; // New function to set new arrivals
+    reviews: Review[];
+    newArrivals: NewArrival[]; // NewArrivals in the context
     basket: Basket | null;
 }
 
@@ -25,7 +28,8 @@ export function useStoreContext() {
 
 export function StoreProvider({children}: PropsWithChildren<unknown>) {
     const [basket, setBasket] = useState<Basket | null>(null);
-    const [reviews, setReviews] = useState<Review[]>([]);  // State for reviews
+    const [reviews, setReviews] = useState<Review[]>([]);
+    const [newArrivals, setNewArrivals] = useState<NewArrival[]>([]);  // State for new arrivals
 
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
@@ -43,7 +47,16 @@ export function StoreProvider({children}: PropsWithChildren<unknown>) {
     }
 
     return (
-        <StoreContext.Provider value={{basket, setBasket, removeItem, clearItems, reviews, setReviews}}>
+        <StoreContext.Provider value={{
+            basket,
+            setBasket,
+            removeItem,
+            clearItems,
+            reviews,
+            setReviews,
+            newArrivals,
+            setNewArrivals
+        }}>
             {children}
         </StoreContext.Provider>
     );

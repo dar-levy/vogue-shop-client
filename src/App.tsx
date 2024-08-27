@@ -21,6 +21,7 @@ import Loading from './components/Loading.tsx';
 import Checkout from "./components/Checkout.tsx";
 import ThankYou from "./components/ThankYou.tsx";
 import Reviews from "./components/Reviews.tsx";
+import {NewArrivals} from "./components/NewArrivals.tsx";
 
 function App() {
   const { setBasket } = useStoreContext();
@@ -75,6 +76,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Reviews />} />
+                    <Route path="/new-arrivals" element={<NewArrivals />} />
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/thank-you/:id" element={<ThankYou />} />
