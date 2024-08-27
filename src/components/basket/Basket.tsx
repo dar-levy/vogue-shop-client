@@ -45,7 +45,7 @@ export default function Basket() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {basket?.items.length > 0 ? (
+                            {basket ? (
                                 basket.items.map((item) => (
                                     <TableRow
                                         key={item.productId}
@@ -109,7 +109,7 @@ export default function Basket() {
                         variant='contained'
                         size='large'
                         fullWidth
-                        disabled={!basket} 
+                        disabled={!basket}
                     >
                         Checkout
                     </Button>

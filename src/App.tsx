@@ -62,7 +62,7 @@ function App() {
   return (
       <>
         <ThemeProvider theme={theme}>
-          <ToastContainer hideProgressBar theme='colored' />
+          <ToastContainer autoClose={2000} theme='colored' />
           <CssBaseline />
           <Header darkMode={darkMode} handleThemeChange={handleThemeChange} isAuthenticated={isAuthenticated} />
           <Container>
