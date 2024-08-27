@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from 'react-toastify';
-import {fakeBasket, fakeProducts} from "./fakeHttpService.ts";
+import {fakeBasket, fakeProducts, fakeReviews} from "./fakeHttpService.ts";
 import config from '../config.json';
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
@@ -66,9 +66,14 @@ const Basket = {
     removeItem: (productId: number, quantity = 1) => requests.del(`basket?productId=${productId}&quantity=${quantity}`)
 }
 
+const Reviews = {
+    get: () => fakeReviews
+}
+
 const agent = {
     Catalog,
-    Basket
+    Basket,
+    Reviews
 }
 
 export default agent;

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, Paper, Typography, Rating } from '@mui/material';
 import { useStoreContext } from '../context/StoreContext';
+import agent from "../services/agent.ts";
 
 export interface Review {
     id: number;
@@ -13,20 +14,8 @@ const Reviews: React.FC = () => {
     const { reviews, setReviews } = useStoreContext();
 
     useEffect(() => {
-        // Simulate fetching 10 reviews from an API
-        const fetchedReviews: Review[] = [
-            { id: 1, description: 'Great product! Loved the experience.', author: 'Alice', rating: 4.5 },
-            { id: 2, description: 'The product was decent but could be improved.', author: 'Bob', rating: 3.5 },
-            { id: 3, description: 'Not satisfied. Expected better quality.', author: 'Charlie', rating: 2.5 },
-            { id: 4, description: 'Amazing! Will buy again.', author: 'David', rating: 5 },
-            { id: 5, description: 'Pretty good, but room for improvement.', author: 'Eve', rating: 4 },
-            { id: 6, description: 'Not what I expected.', author: 'Frank', rating: 2 },
-            { id: 7, description: 'Worth every penny!', author: 'Grace', rating: 5 },
-            { id: 8, description: 'Mediocre, could be better.', author: 'Hank', rating: 3 },
-            { id: 9, description: 'Really loved it, would recommend!', author: 'Ivy', rating: 4.5 },
-            { id: 10, description: 'It was okay, but I’ve seen better.', author: 'John', rating: 3 },
-        ];
-        setReviews(fetchedReviews);  // Store reviews in the context
+        const fetchedReviews: Review[] = agent.Reviews.get()
+        setReviews(fetchedReviews);
     }, [setReviews]);
 
     return (
