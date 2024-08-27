@@ -1,9 +1,10 @@
 import './App.css';
-import { Container, createTheme, ThemeProvider } from "@mui/material";
+import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import Catalog from "./components/catalog/Catalog.tsx";
 import { useEffect, useState } from "react";
 import Header from "./components/Header.tsx";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound.tsx';
 import RegisterForm from "./components/RegisterForm.tsx";
@@ -17,6 +18,8 @@ import {getCookie} from "./utils/util.ts";
 import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
+import Checkout from "./components/Checkout.tsx";
+import ThankYou from "./components/ThankYou.tsx";
 
 function App() {
   const { setBasket } = useStoreContext();
@@ -58,8 +61,9 @@ function App() {
 
   return (
       <>
-        <ToastContainer />
         <ThemeProvider theme={theme}>
+          <ToastContainer hideProgressBar theme='colored' />
+          <CssBaseline />
           <Header darkMode={darkMode} handleThemeChange={handleThemeChange} isAuthenticated={isAuthenticated} />
           <Container>
             <Routes>
@@ -70,6 +74,8 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/basket" element={<Basket />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/thank-you/:id" element={<ThankYou />} />
                     <Route path="/logout" element={<LogoutForm />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="/" element={<Navigate to="/catalog" />} />

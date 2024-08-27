@@ -4,6 +4,7 @@ import { Basket } from '../models/basket';
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
     setBasket: (basket: Basket) => void;
+    clearItems: () => void;  // New function to clear all items
     basket: Basket | null;
 }
 
@@ -36,9 +37,14 @@ export function StoreProvider({children}: PropsWithChildren<unknown>) {
         }
     }
 
+    function clearItems() {
+        if (!basket) return;
+        setBasket({...basket, items: []});  // Clear all items
+    }
+
     return (
-        <StoreContext.Provider value={{basket, setBasket, removeItem}}>
+        <StoreContext.Provider value={{basket, setBasket, removeItem, clearItems}}>
             {children}
         </StoreContext.Provider>
-    )
+    );
 }

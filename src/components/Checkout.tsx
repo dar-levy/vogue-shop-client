@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function Checkout() {
-    const { basket, setBasket } = useStoreContext();
+    const { basket, clearItems } = useStoreContext();
     const navigate = useNavigate();
 
     const handlePayment = () => {
-        // Simulate payment success
         setTimeout(() => {
             toast.success('Payment successful!');
             const paymentId = Math.random().toString(36).substring(2, 15);
-            setBasket(null); // Clear the basket
+            clearItems();
             navigate(`/thank-you/${paymentId}`);
         }, 1000);
     };
