@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Product} from "../../models/product.ts";
 import ProductsGrid from "./ProductsGrid.tsx";
-import {fakeProducts} from "../../services/fakeHttpService.ts";
 import Loading from '../Loading.tsx';
 import agent from "../../services/agent.ts";
 

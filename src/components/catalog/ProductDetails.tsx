@@ -65,7 +65,7 @@ export default function ProductDetails() {
                 <img src={product.pictureUrl} alt={product.name} style={{ width: '100%' }} />
             </Grid>
             <Grid item xs={6}>
-                <Typography variant='h3'>{product.name}</Typography>
+                <Typography variant='h3' color="text.primary">{product.name}</Typography>
                 <Divider sx={{ mb: 2 }} />
                 <Typography variant='h4' color='secondary'>₪{product.price}</Typography>
                 <TableContainer>

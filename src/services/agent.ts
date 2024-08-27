@@ -1,10 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from 'react-toastify';
 import {fakeProducts} from "./fakeHttpService.ts";
+import config from '../config.json';
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
-axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.baseURL = config.apiUrl;
 axios.defaults.withCredentials = true;
 
 const responseBody = (response: AxiosResponse) => response.data;
