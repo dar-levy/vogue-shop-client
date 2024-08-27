@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from 'react-toastify';
+import {fakeProducts} from "./fakeHttpService.ts";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
@@ -47,8 +48,13 @@ const requests = {
 }
 
 const Catalog = {
-    list: () => requests.get('products'),
-    details: (id: number) => requests.get(`products/${id}`)
+    list: () =>
+        // requests.get('products')
+        fakeProducts
+    ,
+    details: (id: number) =>
+        // requests.get(`products/${id}`)
+        fakeProducts.find(product => product.id === id)
 }
 
 const Basket = {

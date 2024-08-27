@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import About from './components/About.tsx';
 import Contact from './components/Contact.tsx';
 import Basket from './components/basket/Basket.tsx';
+import ProductDetails from "./components/catalog/ProductDetails.tsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -50,6 +51,7 @@ function App() {
               {isAuthenticated ? (
                   <>
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/catalog/:id" element={<ProductDetails />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/basket" element={<Basket />} />
