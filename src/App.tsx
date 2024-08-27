@@ -22,6 +22,7 @@ import Checkout from "./components/Checkout.tsx";
 import ThankYou from "./components/ThankYou.tsx";
 import Reviews from "./components/Reviews.tsx";
 import {NewArrivals} from "./components/NewArrivals.tsx";
+import ActivityHistory from "./components/ActivityHistory.tsx";
 
 function App() {
   const { setBasket } = useStoreContext();
@@ -77,6 +78,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Reviews />} />
                     <Route path="/new-arrivals" element={<NewArrivals />} />
+                    <Route path="/activity-history" element={<ActivityHistory />} />
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/thank-you/:id" element={<ThankYou />} />
