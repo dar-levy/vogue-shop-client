@@ -2,6 +2,7 @@ import { Product } from "../models/product.ts";
 import { Basket } from "../models/basket.ts";
 import {NewArrival} from "../models/new-arrival.ts";
 import {Review} from "../models/review.ts";
+import {ActivityHistory} from "../models/activity-history.ts";
 
 export const fakeProducts: Product[] = [
     {
@@ -251,4 +252,18 @@ export const fakeNewArrivals: NewArrival[] = [
     { id: 7, name: 'Real Madrid Long-Sleeve 2025', description: 'Description 7', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/52caf7ec2c47450ba7187a443cfccf29_9366/Real_Madrid_24-25_Long_Sleeve_Home_Authentic_Jersey_White_IT5204_HM1.jpg', brand: 'Brand 7', type: 'Type 7', arrivalDate: new Date('2025-01-07') },
     { id: 8, name: 'RM Match Jersey', description: 'Description 8', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9b571e4aab6e45d48327dde952365d87_9366/Real_Madrid_Pre-Match_Jersey_White_IT5101_21_model.jpg', brand: 'Brand 8', type: 'Type 8', arrivalDate: new Date('2025-01-08') },
     { id: 9, name: 'REAL A JSY Y', description: 'Description 9', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ff03c974056a444eac115e22f5b9b036_9366/REAL_A_JSY_Y_Orange_KB3834_01_laydown.jpg', brand: 'Brand 9', type: 'Type 9', arrivalDate: new Date('2025-01-09') },
+];
+
+export const fakeActivityHistory: ActivityHistory[] =
+    [
+        { id: 1, name: 'Checkout', type: 'Order', timestamp: new Date('2024-08-01'), basket: { id: 1, buyerId: "1", items: [] } },
+        { id: 2, name: 'Added to Cart', type: 'Cart', timestamp: new Date('2024-08-02'), basket: { id: 2, buyerId: "4", items: [] } },
+        { id: 3, name: 'Removed from Cart', type: 'Cart', timestamp: new Date('2024-08-03'), basket: { id: 3, buyerId: "14", items: [] } },
+        { id: 4, name: 'Checkout', type: 'Order', timestamp: new Date('2024-08-04'), basket: { id: 4, buyerId: "24", items: [] } },
+        { id: 5, name: 'Added to Wishlist', type: 'Wishlist', timestamp: new Date('2024-08-05'), basket: { id: 5, buyerId: "52", items: [] } },
+        { id: 6, name: 'Viewed Product', type: 'View', timestamp: new Date('2024-08-06'), basket: { id: 6, buyerId: "78", items: [] } },
+        { id: 7, name: 'Checkout', type: 'Order', timestamp: new Date('2024-08-07'), basket: { id: 7, buyerId: "124", items: [] } },
+        { id: 8, name: 'Added to Cart', type: 'Cart', timestamp: new Date('2024-08-08'), basket: { id: 8, buyerId: "432", items: [] } },
+        { id: 9, name: 'Viewed Product', type: 'View', timestamp: new Date('2024-08-09'), basket: { id: 9, buyerId: "51", items: [] } },
+        { id: 10, name: 'Checkout', type: 'Order', timestamp: new Date('2024-08-10'), basket: { id: 10, buyerId: "90", items: [] } },
 ];
