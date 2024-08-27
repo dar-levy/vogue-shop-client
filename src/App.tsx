@@ -9,13 +9,17 @@ import NotFound from './components/NotFound.tsx';
 import RegisterForm from "./components/RegisterForm.tsx";
 import LogoutForm from "./components/LogoutForm.tsx";
 import LoginForm from './components/LoginForm.tsx';
-import Cookies from 'js-cookie';
 import About from './components/About.tsx';
 import Contact from './components/Contact.tsx';
 import Basket from './components/basket/Basket.tsx';
 import ProductDetails from "./components/catalog/ProductDetails.tsx";
+import {getCookie} from "./utils/util.ts";
+import agent from "./services/agent.ts";
+import {useStoreContext} from "./context/StoreContext.tsx";
 
 function App() {
+  const {setBasket} = useStoreContext();
+  const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
@@ -31,11 +35,19 @@ function App() {
 
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.background.default;
-    const sessionCookie = Cookies.get('sessionId'); // Assuming the session cookie is named 'sessionId'
-    if (sessionCookie) {
-      setIsAuthenticated(true);
+    const buyerId = getCookie('buyerId');
+    if (buyerId) {
+      setIsAuthenticated(true)
+      setBasket(agent.Basket.get())
+      setLoading(false)
+      // agent.Basket.get()
+      //     .then(basket => setBasket(basket))
+      //     .catch(error => console.log(error))
+      //     .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-  }, [theme.palette.background.default]);
+  }, [theme.palette.background.default, setBasket]);
 
   function handleThemeChange() {
     setDarkMode(!darkMode);

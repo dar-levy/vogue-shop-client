@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from 'react-toastify';
-import {fakeProducts} from "./fakeHttpService.ts";
+import {fakeBasket, fakeProducts} from "./fakeHttpService.ts";
 import config from '../config.json';
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
@@ -59,7 +59,10 @@ const Catalog = {
 }
 
 const Basket = {
-    get: () => requests.get('basket'),
+    get: () =>
+        // requests.get('basket')
+        fakeBasket
+    ,
     addItem: (productId: number, quantity = 1) => requests.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
     removeItem: (productId: number, quantity = 1) => requests.del(`basket?productId=${productId}&quantity=${quantity}`)
 }
