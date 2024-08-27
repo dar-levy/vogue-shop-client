@@ -6,7 +6,7 @@ import {currencyFormat} from "../../utils/util.ts";
 export default function Summary() {
     const { basket } = useStoreContext();
     const subtotal = basket?.items.reduce((sum, item) => sum + (item.quantity * item.price), 0) ?? 0;
-    const deliveryFee = subtotal > 10000 ? 0 : 500;
+    const deliveryFee = subtotal > 10000 ? 0 : 50;
 
     return (
         <>
@@ -27,7 +27,7 @@ export default function Summary() {
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <span style={{fontStyle: 'italic'}}>*Orders over $100 qualify for free delivery</span>
+                                <span style={{fontStyle: 'italic'}}>*Orders over ₪500 qualify for free delivery</span>
                             </TableCell>
                         </TableRow>
                     </TableBody>
