@@ -12,6 +12,7 @@ import LoginForm from './components/LoginForm.tsx';
 import Cookies from 'js-cookie';
 import About from './components/About.tsx';
 import Contact from './components/Contact.tsx';
+import Basket from './components/basket/Basket.tsx';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -51,6 +52,7 @@ function App() {
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/basket" element={<Basket />} />
                     <Route path="/logout" element={<LogoutForm />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="/" element={<Navigate to="/catalog" />} />
