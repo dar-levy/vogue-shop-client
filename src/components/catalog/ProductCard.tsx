@@ -6,18 +6,14 @@ import agent from "../../services/agent.ts";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Link } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';  // Import Delete icon
-import Cookies from 'js-cookie';  // Import js-cookie to handle cookies
 
 interface Props {
     product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
-    const { setBasket, handleRemoveItem } = useStoreContext();
+    const { setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [loading, setLoading] = useState(false);
-
-    // Check if the user is an admin
-    const isAdmin = Cookies.get('isAdmin') === 'true';
 
     function handleAddItem(productId: number) {
         setLoading(true);
