@@ -47,10 +47,12 @@ export const NewArrivals: React.FC = () => {
                             '&:hover': {
                                 boxShadow: '0 8px 20px rgba(0, 0, 0, 0.3)',
                                 transition: 'box-shadow 0.3s ease-in-out',
-                            }
+                            },
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
                         }}
                     />
-                    <Typography variant="h6" sx={{ marginTop: '10px' }}>
+                    <Typography variant="h6" color="text.primary" sx={{ marginTop: '10px' }}>
                         {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

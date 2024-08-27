@@ -242,12 +242,12 @@ export const fakeReviews: Review[] = [
 
 
 export const fakeNewArrivals: NewArrival[] = [
-    { id: 1, name: 'New Product 1', description: 'Description 1', pictureUrl: '/images/prod1.png', brand: 'Brand 1', type: 'Type 1', arrivalDate: new Date('2025-02-01') },
-    { id: 2, name: 'New Product 2', description: 'Description 2', pictureUrl: '/images/prod2.png', brand: 'Brand 2', type: 'Type 2', arrivalDate: new Date('2025-01-20') },
-    { id: 3, name: 'New Product 3', description: 'Description 3', pictureUrl: '/images/prod3.png', brand: 'Brand 3', type: 'Type 3', arrivalDate: new Date('2025-01-17') },
-    { id: 4, name: 'New Product 4', description: 'Description 4', pictureUrl: '/images/prod4.png', brand: 'Brand 4', type: 'Type 4', arrivalDate: new Date('2025-01-04') },
-    { id: 5, name: 'New Product 5', description: 'Description 5', pictureUrl: '/images/prod5.png', brand: 'Brand 5', type: 'Type 5', arrivalDate: new Date('2025-03-05') },
-    { id: 6, name: 'New Product 6', description: 'Description 6', pictureUrl: '/images/prod6.png', brand: 'Brand 6', type: 'Type 6', arrivalDate: new Date('2025-02-06') },
+    { id: 1, name: 'Real Madrid Jersey 2025 ', description: 'Description 1', pictureUrl: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bba09c80cdf3416c9957d5ea0dee0738_9366/Real_Madrid_24-25_Home_Jersey_White_IU5011_HM1.jpg", brand: 'Adidas', type: 'Mens Sports', arrivalDate: new Date('2025-02-01') },
+    { id: 2, name: 'Jamaica LFSTLR', description: 'Description 2', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3512c7b285e942568a2f31d62b361b8c_9366/Jamaica_LFSTLR_Jersey_Black_IT2464_HM1.jpg', brand: 'Adidas', type: 'Mens Originals', arrivalDate: new Date('2025-01-20') },
+    { id: 3, name: 'Q3 Atlanta Hooded Sweatshirt', description: 'Description 3', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9c42f7ac3830401f9b4333f6a575e078_9366/Q3_Atlanta_Hooded_Sweatshirt_White_IX6779_21_model.jpg', brand: 'Originals', type: 'Mens Originals', arrivalDate: new Date('2025-01-17') },
+    { id: 4, name: 'Adicolor', description: 'Description 4', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/48eb43fe0d694740af6a485ef1df6fbf_9366/Adicolor_Neuclassics_Shorts_White_JF9148_21_model.jpg', brand: 'Originals', type: 'Neuclassics Shorts', arrivalDate: new Date('2025-01-04') },
+    { id: 5, name: 'Manchester United Originals Tee', description: 'Description 5', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8cbebeebb60d4861b108822dd92134e5_9366/Manchester_United_Originals_Tee_Black_IS6519_HM1.jpg', brand: 'Brand 5', type: 'Type 5', arrivalDate: new Date('2025-03-05') },
+    { id: 6, name: 'Manchester United Jersey 2025', description: 'Description 6', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ede67cd9cbc24a718d0c74786f764ff6_9366/Manchester_United_24-25_Long_Sleeve_Home_Authentic_Jersey_Red_IT1988_HM1.jpg', brand: 'Brand 6', type: 'Type 6', arrivalDate: new Date('2025-02-06') },
     { id: 7, name: 'New Product 7', description: 'Description 7', pictureUrl: '/images/prod7.png', brand: 'Brand 7', type: 'Type 7', arrivalDate: new Date('2025-01-07') },
     { id: 8, name: 'New Product 8', description: 'Description 8', pictureUrl: '/images/prod8.png', brand: 'Brand 8', type: 'Type 8', arrivalDate: new Date('2025-01-08') },
     { id: 9, name: 'New Product 9', description: 'Description 9', pictureUrl: '/images/prod9.png', brand: 'Brand 9', type: 'Type 9', arrivalDate: new Date('2025-01-09') },
