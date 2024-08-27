@@ -16,13 +16,12 @@ const ReviewsTab: React.FC = () => {
     const [value, setValue] = React.useState(0);
 
     useEffect(() => {
-        // Simulate fetching reviews from an API
         const fetchedReviews: Review[] = [
             { id: 1, description: 'Great product!', author: 'Alice' },
             { id: 2, description: 'Not bad.', author: 'Bob' },
             { id: 3, description: 'Could be better.', author: 'Charlie' }
         ];
-        setReviews(fetchedReviews);  // Store reviews in the context
+        setReviews(fetchedReviews);
     }, [setReviews]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
