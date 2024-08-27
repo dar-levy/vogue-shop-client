@@ -10,7 +10,6 @@ const midLinks = [
     { title: 'contact', path: '/contact' },
     { title: 'reviews', path: '/reviews' },
     { title: 'arrivals', path: '/new-arrivals' },
-    { title: 'activity', path: '/activity-history' }
 ];
 
 const rightAuthLinks = [
@@ -41,7 +40,7 @@ interface Props {
 }
 
 export default function Header({ handleThemeChange, darkMode, isAuthenticated }: Props) {
-    const {basket} = useStoreContext();
+    const {basket, isAdmin} = useStoreContext();
     const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -81,6 +80,14 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
                                 {title.toUpperCase()}
                             </ListItem>
                         ))}
+                        {isAdmin && <ListItem
+                            component={NavLink}
+                            to='activity-history'
+                            key='activity-history'
+                            sx={navLinkStyles}
+                        >
+                            HISTORY
+                        </ListItem>}
                     </List>
                 )}
 

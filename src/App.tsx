@@ -25,7 +25,7 @@ import {NewArrivals} from "./components/NewArrivals.tsx";
 import ActivityHistory from "./components/ActivityHistory.tsx";
 
 function App() {
-  const { setBasket } = useStoreContext();
+  const { setBasket, isAdmin } = useStoreContext();
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -78,7 +78,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Reviews />} />
                     <Route path="/new-arrivals" element={<NewArrivals />} />
-                    <Route path="/activity-history" element={<ActivityHistory />} />
+                    {isAdmin && <Route path="/activity-history" element={<ActivityHistory/>}/>}
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/thank-you/:id" element={<ThankYou />} />
