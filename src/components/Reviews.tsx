@@ -38,16 +38,17 @@ const Reviews: React.FC = () => {
                         width: '250px',
                         padding: '15px',
                         boxShadow: 3,
-                        transform: `rotate(${Math.random() * 10 - 5}deg)`, // Adds a slight random rotation
-                        backgroundColor: '#fffde7',
+                        transform: `rotate(${Math.random() * 10 - 5}deg)`,
+                        backgroundColor: '#fff9c4',
                         borderRadius: '5px',
+                        color: 'black',
                     }}
                 >
-                    <Typography variant="body1" sx={{ fontStyle: 'italic', marginBottom: '10px' }}>
+                    <Typography variant="body1" sx={{ fontStyle: 'italic', marginBottom: '10px', color: 'black' }}>
                         "{review.description}"
                     </Typography>
                     <Rating name="read-only" value={review.rating} precision={0.5} readOnly />
-                    <Typography variant="body2" sx={{ textAlign: 'right', fontWeight: 'bold', marginTop: '10px' }}>
+                    <Typography variant="body2" sx={{ textAlign: 'right', fontWeight: 'bold', marginTop: '10px', color: 'black' }}>
                         - {review.author}
                     </Typography>
                 </Paper>

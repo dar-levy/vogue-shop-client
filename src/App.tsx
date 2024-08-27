@@ -14,7 +14,6 @@ import About from './components/About.tsx';
 import Contact from './components/Contact.tsx';
 import Basket from './components/basket/Basket.tsx';
 import ProductDetails from "./components/catalog/ProductDetails.tsx";
-import {getCookie} from "./utils/util.ts";
 import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
@@ -25,10 +24,9 @@ import {NewArrivals} from "./components/NewArrivals.tsx";
 import ActivityHistory from "./components/ActivityHistory.tsx";
 
 function App() {
-  const { setBasket } = useStoreContext();
+  const { setBasket, isAdmin, isAuthenticated } = useStoreContext();
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const paletteType = darkMode ? 'dark' : 'light';
   const theme = createTheme({
@@ -42,11 +40,9 @@ function App() {
 
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.background.default;
-    setIsAuthenticated(true)
     setBasket(agent.Basket.get())
     setLoading(false)
-    const buyerId = getCookie('buyerId');
-    if (buyerId) {
+    if (isAuthenticated) {
       // agent.Basket.get()
       //     .then(basket => setBasket(basket))
       //     .catch(error => console.log(error))
@@ -78,7 +74,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Reviews />} />
                     <Route path="/new-arrivals" element={<NewArrivals />} />
-                    <Route path="/activity-history" element={<ActivityHistory />} />
+                    {isAdmin && <Route path="/activity-history" element={<ActivityHistory/>}/>}
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/thank-you/:id" element={<ThankYou />} />

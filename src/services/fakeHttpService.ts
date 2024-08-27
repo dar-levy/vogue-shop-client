@@ -205,7 +205,7 @@ export const fakeProducts: Product[] = [
 ];
 
 export const fakeBasket: Basket = {
-    id: 313418857,
+    id: 33333333,
     buyerId: "Dar",
     items: [
     {
@@ -241,7 +241,6 @@ export const fakeReviews: Review[] = [
     { id: 10, description: 'It was okay, but I’ve seen better.', author: 'John', rating: 3 },
 ];
 
-
 export const fakeNewArrivals: NewArrival[] = [
     { id: 1, name: 'Real Madrid Jersey 2025 ', description: 'Description 1', pictureUrl: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bba09c80cdf3416c9957d5ea0dee0738_9366/Real_Madrid_24-25_Home_Jersey_White_IU5011_HM1.jpg", brand: 'Adidas', type: 'Mens Sports', arrivalDate: new Date('2025-02-01') },
     { id: 2, name: 'Jamaica LFSTLR', description: 'Description 2', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3512c7b285e942568a2f31d62b361b8c_9366/Jamaica_LFSTLR_Jersey_Black_IT2464_HM1.jpg', brand: 'Adidas', type: 'Mens Originals', arrivalDate: new Date('2025-01-20') },
@@ -254,8 +253,7 @@ export const fakeNewArrivals: NewArrival[] = [
     { id: 9, name: 'REAL A JSY Y', description: 'Description 9', pictureUrl: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ff03c974056a444eac115e22f5b9b036_9366/REAL_A_JSY_Y_Orange_KB3834_01_laydown.jpg', brand: 'Brand 9', type: 'Type 9', arrivalDate: new Date('2025-01-09') },
 ];
 
-export const fakeActivityHistory: ActivityHistory[] =
-    [
+export const fakeActivityHistory: ActivityHistory[] = [
         { id: 1, name: 'Checkout', type: 'Order', timestamp: new Date('2024-08-01'), basket: { id: 1, buyerId: "1", items: [] } },
         { id: 2, name: 'Added to Cart', type: 'Cart', timestamp: new Date('2024-08-02'), basket: { id: 2, buyerId: "4", items: [] } },
         { id: 3, name: 'Removed from Cart', type: 'Cart', timestamp: new Date('2024-08-03'), basket: { id: 3, buyerId: "14", items: [] } },
