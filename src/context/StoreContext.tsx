@@ -39,7 +39,12 @@ export function StoreProvider({children}: PropsWithChildren<unknown>) {
 
     function clearItems() {
         if (!basket) return;
-        setBasket({...basket, items: []});  // Clear all items
+        console.log('Clearing items from the basket');
+        // setBasket(prevBasket => ({
+        //     ...prevBasket!,
+        //     items: []
+        // }));
+        setBasket(null);
     }
 
     return (

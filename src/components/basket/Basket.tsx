@@ -30,8 +30,6 @@ export default function Basket() {
             .finally(() => setStatus({ loading: false, name: '' }))
     }
 
-    if (!basket) return <Typography variant="h3">Your basket is empty</Typography>
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} md={8}>
@@ -47,47 +45,57 @@ export default function Basket() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {basket.items.map((item) => (
-                                <TableRow
-                                    key={item.productId}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        <Box display='flex' alignItems='center'>
-                                            <img style={{ height: 50, marginRight: 20 }} src={item.pictureUrl} alt={item.name} />
-                                            <span>{item.name}</span>
-                                        </Box>
-                                    </TableCell>
-                                    <TableCell align="right">₪{item.price}</TableCell>
-                                    <TableCell align="center">
-                                        <LoadingButton
-                                            color='error'
-                                            loading={status.loading && status.name === 'rem' + item.productId}
-                                            onClick={() => handleRemoveItem(item.productId, 1, 'rem' + item.productId)}
-                                        >
-                                            <Remove />
-                                        </LoadingButton>
-                                        {item.quantity}
-                                        <LoadingButton
-                                            loading={status.loading && status.name === 'add' + item.productId}
-                                            onClick={() => handleAddItem(item.productId, 'add' + item.productId)}
-                                            color='secondary'
-                                        >
-                                            <Add />
-                                        </LoadingButton>
-                                    </TableCell>
-                                    <TableCell align="right">₪{item.price * item.quantity}</TableCell>
-                                    <TableCell align="right">
-                                        <LoadingButton
-                                            loading={status.loading && status.name === 'del' + item.productId}
-                                            onClick={() => handleRemoveItem(item.productId, item.quantity, 'del' + item.productId)}
-                                            color='error'
-                                        >
-                                            <Delete />
-                                        </LoadingButton>
+                            {basket?.items.length > 0 ? (
+                                basket.items.map((item) => (
+                                    <TableRow
+                                        key={item.productId}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row">
+                                            <Box display='flex' alignItems='center'>
+                                                <img style={{ height: 50, marginRight: 20 }} src={item.pictureUrl} alt={item.name} />
+                                                <span>{item.name}</span>
+                                            </Box>
+                                        </TableCell>
+                                        <TableCell align="right">₪{item.price}</TableCell>
+                                        <TableCell align="center">
+                                            <LoadingButton
+                                                color='error'
+                                                loading={status.loading && status.name === 'rem' + item.productId}
+                                                onClick={() => handleRemoveItem(item.productId, 1, 'rem' + item.productId)}
+                                            >
+                                                <Remove />
+                                            </LoadingButton>
+                                            {item.quantity}
+                                            <LoadingButton
+                                                loading={status.loading && status.name === 'add' + item.productId}
+                                                onClick={() => handleAddItem(item.productId, 'add' + item.productId)}
+                                                color='secondary'
+                                            >
+                                                <Add />
+                                            </LoadingButton>
+                                        </TableCell>
+                                        <TableCell align="right">₪{item.price * item.quantity}</TableCell>
+                                        <TableCell align="right">
+                                            <LoadingButton
+                                                loading={status.loading && status.name === 'del' + item.productId}
+                                                onClick={() => handleRemoveItem(item.productId, item.quantity, 'del' + item.productId)}
+                                                color='error'
+                                            >
+                                                <Delete />
+                                            </LoadingButton>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={5}>
+                                        <Typography variant="h6" align="center">
+                                            No items in basket
+                                        </Typography>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            )}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -100,7 +108,9 @@ export default function Basket() {
                         to={'/checkout'}
                         variant='contained'
                         size='large'
-                        fullWidth>
+                        fullWidth
+                        disabled={basket?.items.length === 0}  // Disable checkout button if no items
+                    >
                         Checkout
                     </Button>
                 </Paper>

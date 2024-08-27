@@ -51,7 +51,7 @@ function App() {
     } else {
       setLoading(false);
     }
-  }, [theme.palette.background.default, setBasket]);
+  }, [theme.palette.background.default]);
 
   function handleThemeChange() {
     setDarkMode(!darkMode);
