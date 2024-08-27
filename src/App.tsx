@@ -16,6 +16,7 @@ import ProductDetails from "./components/catalog/ProductDetails.tsx";
 import {getCookie} from "./utils/util.ts";
 import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
+import Loading from './components/Loading.tsx';
 
 function App() {
   const {setBasket} = useStoreContext();
@@ -52,6 +53,8 @@ function App() {
   function handleThemeChange() {
     setDarkMode(!darkMode);
   }
+
+  if (loading) return <Loading message='Initiasing app...' />
 
   return (
       <>
