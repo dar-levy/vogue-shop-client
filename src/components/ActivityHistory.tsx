@@ -30,7 +30,6 @@ const ActivityHistoryComponent: React.FC = () => {
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', whiteSpace: 'nowrap' }}>Name</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', whiteSpace: 'nowrap' }}>Type</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', whiteSpace: 'nowrap' }}>Timestamp</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize: '1rem', whiteSpace: 'nowrap' }}>Basket Details</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -53,9 +52,6 @@ const ActivityHistoryComponent: React.FC = () => {
                                 <TableCell>{activity.name}</TableCell>
                                 <TableCell>{activity.type}</TableCell>
                                 <TableCell>{activity.timestamp.toDateString()}</TableCell>
-                                <TableCell sx={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
-                                    {JSON.stringify(activity.basket)}
-                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
