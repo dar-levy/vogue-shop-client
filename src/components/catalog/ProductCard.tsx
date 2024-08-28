@@ -5,14 +5,16 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import agent from "../../services/agent.ts";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Link } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';  // Import Delete icon
+import DeleteIcon from '@mui/icons-material/Delete';
+import {addProduct} from "../../services/basketService.ts";
+import {toast} from "react-toastify";
 
 interface Props {
     product: Product;
 }
 
 export default function ProductCard({ product }: Props) {
-    const { setBasket, handleRemoveItem, isAdmin } = useStoreContext();
+    const { setBasket, handleRemoveItem, isAdmin, addItem } = useStoreContext();
     const [loading, setLoading] = useState(false);
 
     function handleAddItem(productId: number) {
@@ -21,6 +23,15 @@ export default function ProductCard({ product }: Props) {
             .then(basket => setBasket(basket))
             .catch(error => console.log(error))
             .finally(() => setLoading(false))
+
+        // try {
+        //     await addProduct(productId)
+        //     addItem(productId)
+        //     setLoading(false);
+        // } catch (e) {
+        //     toast.error("Couldn't add product");
+        //     setLoading(false);
+        // }
     }
 
     function handleDeleteClick() {

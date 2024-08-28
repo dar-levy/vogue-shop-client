@@ -11,7 +11,7 @@ export function getBasket() {
     return http.get(`${apiEndpoint}`);
 }
 
-export function AddProduct(id: number, quantity = 1) {
+export function addProduct(id: number, quantity = 1) {
     return http.post(basketUrl(id,quantity));
 }
 

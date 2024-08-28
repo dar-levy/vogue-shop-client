@@ -11,6 +11,7 @@ import {User} from "../models/user.ts";
 import config from "../config.json";
 import {toast} from "react-toastify";
 import {deleteProduct} from "../services/productService.ts";
+import { v4 as uuidv4 } from 'uuid';
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -60,6 +61,39 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }, []);
 
+    function addItem(productId: number, quantity = 1) {
+        const uniqueId = Math.floor(Math.random() * 1000000);
+        const uniqueName = uuidv4();
+
+        if (!basket) {
+            setBasket({
+                id: uniqueId,
+                name: uniqueName,
+                items: [{ productId, quantity }]
+            });
+            return;
+        }
+
+        const existingItemIndex = basket.items.findIndex(item => item.productId === productId);
+
+        if (existingItemIndex >= 0) {
+            const updatedItems = [...basket.items];
+            updatedItems[existingItemIndex].quantity += quantity;
+
+            setBasket(prevState => ({
+                ...prevState!,
+                items: updatedItems
+            }));
+        } else {
+            setBasket(prevState => ({
+                ...prevState!,
+                id: prevState?.id || uniqueId,
+                name: prevState?.name || uniqueName,
+                items: [...prevState!.items, { productId, quantity }]
+            }));
+        }
+    }
+
     function removeItem(productId: number, quantity: number) {
         if (!basket) return;
         const items = [...basket.items];
@@ -91,6 +125,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             basket,
             setBasket,
             removeItem,
+            addItem,
             handleRemoveItem,
             clearItems,
             reviews,
