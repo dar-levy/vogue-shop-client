@@ -25,7 +25,7 @@ class NewProduct extends Form {
     };
 
     schema = {
-        _id: Joi.string(),
+        id: Joi.string(),
         name: Joi.string().required().label("Name"),
         description: Joi.string().required().label("Description"),
         price: Joi.number().required().label("Price"),
