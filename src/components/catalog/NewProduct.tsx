@@ -37,7 +37,7 @@ class NewProduct extends Form {
 
     doSubmit = async () => {
         const { handleAddNewProduct } = this.props;
-        handleAddNewProduct(this.state.data)
+        await handleAddNewProduct(this.state.data)
     };
 
     render() {
