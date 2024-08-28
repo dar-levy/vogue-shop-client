@@ -81,7 +81,6 @@ export default function ProductDetails() {
     function handleDeleteProduct() {
         if (!product) return;
         handleRemoveItem(product.id);
-        navigate('/catalog');
     }
 
     if (loading) return <Loading message='Loading product...' />

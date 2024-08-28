@@ -11,7 +11,6 @@ import {User} from "../models/user.ts";
 import config from "../config.json";
 import {toast} from "react-toastify";
 import {deleteProduct} from "../services/productService.ts";
-import { v4 as uuidv4 } from 'uuid';
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -75,11 +74,12 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     async function handleRemoveItem(productId: number) {
         try {
             await deleteProduct(productId);
-            setProducts(prevProducts => prevProducts.filter(p => p.id !== productId));
+            setProducts(() => products.filter(p => p.id !== productId));
+            navigate('/catalog');
             toast.success("Successfully deleted");
         } catch (ex) {
             if (ex.response && ex.response.status === 404) console.log("x");
-            toast.error("This profile has already been deleted.");
+            toast.error("Couldn't delete product");
         }
     }
 
