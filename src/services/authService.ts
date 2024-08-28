@@ -13,18 +13,14 @@ export async function login(username, password, rememberMe) {
 }
 
 export function logout() {
-    http.post(`${apiEndpoint}/logout`).then(() => {
-        Cookies.remove('rememberMe');
+    http.post(`${config.apiUrl}/logout`).then(() => {
+        Cookies.remove('vogue-user');
     });
 }
 
 export function getCurrentUser() {
-    try {
-        const user = http.get(`${apiEndpoint}/me`);
-        return user;
-    } catch (ex) {
-        return null;
-    }
+    const cookie = Cookies.get('vogue-user');
+    return cookie ? JSON.parse(cookie)?.name || null : null;
 }
 
 export default {
