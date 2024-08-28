@@ -6,23 +6,24 @@ import Form from "./common/form";
 import auth from "../services/authService";
 import { toast } from "react-toastify";
 import React from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, FormControlLabel, Checkbox } from "@mui/material";
 
 class LoginForm extends Form {
     state = {
-        data: { username: "", password: "" },
+        data: { username: "", password: "", rememberMe: false },
         errors: {},
     };
 
     schema = {
         username: Joi.string().required().label("Username"),
         password: Joi.string().required().label("Password"),
+        rememberMe: Joi.boolean().label("Remember Me")
     };
 
     doSubmit = async () => {
         try {
             const { data } = this.state;
-            await auth.login(data.username, data.password);
+            await auth.login(data.username, data.password, data.rememberMe);
 
             toast.success("Successfully Logged In");
             window.location = state ? state.from.pathname : "/";
@@ -49,11 +50,22 @@ class LoginForm extends Form {
                     }}
                 >
                     <Typography component="h1" variant="h3" color="text.primary">
-                        Register
+                        Login
                     </Typography>
                     <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
                         {this.renderInput("username", "Username")}
                         {this.renderInput("password", "Password", "password")}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={this.state.data.rememberMe}
+                                    onChange={this.handleChange}
+                                    name="rememberMe"
+                                    color="primary"
+                                />
+                            }
+                            label="Remember Me"
+                        />
                         {this.renderButton("Login")}
                     </Box>
                 </Box>
