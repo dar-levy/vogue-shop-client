@@ -7,11 +7,13 @@ import Form from "../common/Form.tsx";
 import {Avatar, Box, Container, Typography} from "@mui/material";
 import React from "react";
 import * as config from "../../config.json"
+import { v4 as uuidv4 } from 'uuid';
 
 
 class NewProduct extends Form {
     state = {
         data: {
+            id: uuidv4(),
             name: "",
             description: "",
             price: "",

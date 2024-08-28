@@ -1,5 +1,6 @@
 import http from "./httpService";
 import config from "../config.json";
+import {Product} from "../models/product.ts";
 
 const apiEndpoint = config.apiUrl + "/products";
 
@@ -17,4 +18,8 @@ export function getProduct(id: number) {
 
 export function deleteProduct(id: number) {
     return http.delete(productUrl(id));
+}
+
+export function saveProduct(product : Product) {
+    return http.post(apiEndpoint, product);
 }
