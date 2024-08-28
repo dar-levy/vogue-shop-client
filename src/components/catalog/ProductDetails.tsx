@@ -48,7 +48,7 @@ export default function ProductDetails() {
             setQuantity(parseInt(event.currentTarget.value));
     }
 
-    function handleUpdateCart() {
+    async function handleUpdateCart() {
         if (!product) return;
         setSubmitting(true);
         if (!item || quantity > item?.quantity) {
@@ -57,8 +57,11 @@ export default function ProductDetails() {
                 const { data } = await addProduct(product.id, updatedQuantity)
                 setBasket(data)
                 toast.success("Added product to basket!");
+                navigate('/catalog');
             } catch (e) {
                 toast.error("Couldn't add product");
+            } finally {
+                setLoading(false);
             }
         } else {
             const updatedQuantity = item.quantity - quantity;
@@ -66,12 +69,13 @@ export default function ProductDetails() {
                 const { data } = await removeProduct(product.id, updatedQuantity)
                 setBasket(data)
                 toast.success("Removed product from basket!");
+                navigate('/catalog');
             } catch (e) {
                 toast.error("Couldn't remove product");
+            } finally {
+                setLoading(false);
             }
         }
-
-        navigate('/catalog');
     }
 
     function handleDeleteProduct() {
