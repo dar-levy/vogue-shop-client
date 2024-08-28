@@ -4,7 +4,6 @@
 import Joi from "joi-browser";
 import "./ProfileForm.css";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
 import Form from "../common/Form.tsx";
 
 class NewProduct extends Form {
@@ -24,7 +23,7 @@ class NewProduct extends Form {
         _id: Joi.string(),
         name: Joi.string().required().label("Name"),
         description: Joi.string().required().label("Description"),
-        price: Joi.integer().required().label("Price"),
+        price: Joi.number().required().label("Price"),
         brand: Joi.string().required().label("Brand"),
         type: Joi.string().required().label("Type"),
         pictureUrl: Joi.string().required().uri().label("Image URL"),
@@ -65,8 +64,4 @@ class NewProduct extends Form {
     }
 }
 
-export default function ProfileFormWrapper(props) {
-    const params = useParams();
-    const navigate = useNavigate();
-    return <ProfileForm {...props} params={params} navigate={navigate} />;
-}
+export default NewProduct
