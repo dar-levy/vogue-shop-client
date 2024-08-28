@@ -45,7 +45,11 @@ class Form extends Component {
     else delete errors[input.name];
 
     const data = { ...this.state.data };
-    data[input.name] = input.value;
+    if (input.type === "checkbox") {
+      data[input.name] = input.checked;
+    } else {
+      data[input.name] = input.value;
+    }
 
     this.setState({ data, errors });
   };
