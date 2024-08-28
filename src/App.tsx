@@ -2,14 +2,12 @@ import './App.css';
 import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import { useEffect, useState } from "react";
 import Header from "./components/Header.tsx";
-import {toast, ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 import AppRoutes from "./router/Routes.tsx";
-import { getBasket } from "./services/basketService.ts"
-import logger from "./services/logService.ts"
 
 function App() {
   const { setBasket, isAuthenticated } = useStoreContext();
