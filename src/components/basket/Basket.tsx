@@ -5,12 +5,11 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Summary from './Summary.tsx';
 import { Link } from 'react-router-dom';
-import agent from "../../services/agent.ts";
 import {addProduct, removeProduct} from "../../services/basketService.ts";
 import {toast} from "react-toastify";
 
 export default function Basket() {
-    const { basket, setBasket, removeItem } = useStoreContext();
+    const { basket, setBasket} = useStoreContext();
     const [status, setStatus] = useState({
         loading: false,
         name: ''

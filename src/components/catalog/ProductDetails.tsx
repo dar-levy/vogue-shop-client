@@ -62,12 +62,14 @@ export default function ProductDetails() {
                 .catch(error => console.log(error))
                 .finally(() => setSubmitting(false));
         }
+
+        navigate('/catalog');
     }
 
     function handleDeleteProduct() {
         if (!product) return;
         handleRemoveItem(product.id);
-        navigate('/catalog');  // Redirect to catalog after deletion
+        navigate('/catalog');
     }
 
     if (loading) return <Loading message='Loading product...' />
