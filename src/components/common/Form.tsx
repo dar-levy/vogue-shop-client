@@ -56,7 +56,7 @@ class Form extends Component {
             type="submit"
             variant="contained"
             color="primary"
-            disabled={this.validate()}
+            disabled={!!this.validate()}
             fullWidth
         >
           {label}
