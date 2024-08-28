@@ -53,10 +53,10 @@ const Catalog = {
         // requests.get('products')
         fakeProducts
     ,
-    details: (id: number) =>
+    details: (id: string) =>
         // requests.get(`products/${id}`)
         fakeProducts.find(product => product.id === id),
-    delete: (id: number) =>
+    delete: (id: string) =>
         // requests.del(`products/${id}`)
         fakeProducts.filter(product => product.id !== id),
 }

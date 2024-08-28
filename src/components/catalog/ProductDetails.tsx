@@ -28,7 +28,7 @@ export default function ProductDetails() {
     useEffect(() => {
         if (item) setQuantity(item.quantity);
         if (id) {
-            setProduct(agent.Catalog.details(parseInt(id)));
+            setProduct(agent.Catalog.details(id));
             setLoading(false);
         }
         // try {
