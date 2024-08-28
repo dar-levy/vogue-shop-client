@@ -5,6 +5,8 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import auth from "../services/authService";
 import { toast } from "react-toastify";
+import React from "react";
+import { Container, Typography, Box } from "@mui/material";
 
 class LoginForm extends Form {
     state = {
@@ -37,14 +39,25 @@ class LoginForm extends Form {
         if (auth.getCurrentUser()) return <Navigate to="/" />;
 
         return (
-            <div>
-                <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("username", "Username")}
-                    {this.renderInput("password", "Password", "password")}
-                    {this.renderButton("Login")}
-                </form>
-            </div>
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Typography component="h1" variant="h3" color="text.primary">
+                        Register
+                    </Typography>
+                    <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
+                        {this.renderInput("username", "Username")}
+                        {this.renderInput("password", "Password", "password")}
+                        {this.renderButton("Login")}
+                    </Box>
+                </Box>
+            </Container>
         );
     }
 }
