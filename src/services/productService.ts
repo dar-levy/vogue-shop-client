@@ -14,3 +14,7 @@ export function getProducts() {
 export function getProduct(id: number) {
     return http.get(productUrl(id));
 }
+
+export function deleteProduct(id: number) {
+    return http.delete(productUrl(id));
+}
