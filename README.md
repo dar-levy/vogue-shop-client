@@ -58,12 +58,7 @@ Follow the steps below to set up the project locally:
 - **React Router DOM**: For handling routing within the application.
 - **Toastify**: For displaying notifications to the user.
 - **TypeScript**: Provides type safety and ensures robust code.
-- **config.json**: A configuration file used to manage the API URL and other environment variables.
-  ```json
-  {
-    "apiUrl": "http://localhost:5000/api"
-  }
-  ```
+
 
 ## Configuration
 
