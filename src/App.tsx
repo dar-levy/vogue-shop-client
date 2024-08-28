@@ -8,7 +8,7 @@ import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 import AppRoutes from "./router/Routes.tsx";
-import * as basket from "./services/basketService.ts"
+import { getBasket } from "./services/basketService.ts"
 import logger from "./services/logService.ts"
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
     setBasket(agent.Basket.get());
     setLoading(false);
     // try {
-    //   const { data } = await basket.get()
+    //   const { data } = await getBasket()
     //   setBasket(data)
     //   setLoading(false)
     // } catch (err) {
