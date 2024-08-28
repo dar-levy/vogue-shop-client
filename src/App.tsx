@@ -13,7 +13,6 @@ function App() {
   const { setBasket, isAuthenticated } = useStoreContext();
   const [loading, setLoading] = useState(true);
 
-  // Check localStorage for dark mode preference on mount
   const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode === 'true';  // Default to false if not found

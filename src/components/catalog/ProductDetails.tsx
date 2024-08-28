@@ -11,7 +11,7 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
 import Loading from '../Loading.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {getProduct} from "../../services/productService.ts";
+
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();

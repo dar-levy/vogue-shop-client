@@ -20,6 +20,15 @@ export default function Basket() {
             .then(basket => setBasket(basket))
             .catch(error => console.log(error))
             .finally(() => setStatus({ loading: false, name: '' }))
+        // try {
+        //     const { data } = await addProduct(productId)
+        //     setBasket(data)
+        //     setLoading(false);
+        //     toast.success("Added product to basket!");
+        // } catch (e) {
+        //     toast.error("Couldn't add product");
+        //     setLoading(false);
+        // }
     }
 
     function handleRemoveItem(productId: number, quantity = 1, name: string) {
@@ -28,6 +37,16 @@ export default function Basket() {
             .then(() => removeItem(productId, quantity))
             .catch(error => console.log(error))
             .finally(() => setStatus({ loading: false, name: '' }))
+
+        // try {
+        //     const { data } = await removeProduct(productId, quantity)
+        //     setBasket(data)
+        //     setLoading(false);
+        //     toast.success("Removed product from basket!");
+        // } catch (e) {
+        //     toast.error("Couldn't remove product");
+        //     setLoading(false);
+        // }
     }
 
     return (
