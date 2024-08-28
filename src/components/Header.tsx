@@ -40,7 +40,7 @@ interface Props {
 }
 
 export default function Header({ handleThemeChange, darkMode, isAuthenticated }: Props) {
-    const {basket, isAdmin} = useStoreContext();
+    const {basket, isAdmin, user} = useStoreContext();
     const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -66,6 +66,9 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
                         Vogue Shop
                     </Typography>
                     <Switch checked={darkMode} onChange={handleThemeChange} />
+                    <Typography variant='h6'>
+                        Hi {user.name}!
+                    </Typography>
                 </Box>
 
                 {isAuthenticated && (

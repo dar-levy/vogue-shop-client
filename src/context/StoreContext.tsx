@@ -5,6 +5,7 @@ import { NewArrival } from "../models/new-arrival.ts";
 import { Product } from "../models/product.ts";
 import Cookies from 'js-cookie';
 import agent from "../services/agent.ts";
+import {User} from "../models/user.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -20,6 +21,7 @@ interface StoreContextValue {
     newArrivals: NewArrival[];
     products: Product[];
     basket: Basket | null;
+    user: User | null;
 }
 
 export const StoreContext = createContext<StoreContextValue | undefined>(undefined);
@@ -41,13 +43,15 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [products, setProducts] = useState<Product[]>([]);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const userCookie = Cookies.get('vogue-user');
         if (userCookie) {
-            const user = JSON.parse(userCookie);
+            const cookieUser = JSON.parse(userCookie);
+            setUser(cookieUser);
             setIsAuthenticated(true);
-            setIsAdmin(user.isAdmin);
+            setIsAdmin(cookieUser.isAdmin);
         }
     }, []);
 
@@ -85,7 +89,8 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             products,
             setProducts,
             isAdmin,
-            isAuthenticated
+            isAuthenticated,
+            user,
         }}>
             {children}
         </StoreContext.Provider>
