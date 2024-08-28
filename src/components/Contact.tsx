@@ -3,6 +3,17 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
 export default function ContactPage() {
+    // const [description, setDescription] = useState('');
+    //
+    // useEffect(() => {
+    //     try {
+    //         const { data } = await getContact()
+    //         setDescription(data);
+    //     } catch (err) {
+    //         toast.error("Could not get contact info");
+    //     }
+    // }, []);
+
     return (
         <Container>
             <Typography variant="h2" color="text.primary" gutterBottom>
