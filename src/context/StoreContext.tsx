@@ -6,6 +6,7 @@ import { Product } from "../models/product.ts";
 import Cookies from 'js-cookie';
 import agent from "../services/agent.ts";
 import {User} from "../models/user.ts";
+import config from "../config.json";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -46,7 +47,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const userCookie = Cookies.get('vogue-user');
+        const userCookie = Cookies.get(config.cookieName);
         if (userCookie) {
             const cookieUser = JSON.parse(userCookie);
             setUser(cookieUser);
