@@ -11,6 +11,8 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
 import Loading from '../Loading.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {addProduct, removeProduct} from "../../services/basketService.ts";
+import {toast} from "react-toastify";
 
 
 export default function ProductDetails() {
@@ -51,16 +53,22 @@ export default function ProductDetails() {
         setSubmitting(true);
         if (!item || quantity > item?.quantity) {
             const updatedQuantity = item ? quantity - item.quantity : quantity;
-            agent.Basket.addItem(product.id, updatedQuantity)
-                .then(basket => setBasket(basket))
-                .catch(error => console.log(error))
-                .finally(() => setSubmitting(false));
+            try {
+                const { data } = await addProduct(product.id, updatedQuantity)
+                setBasket(data)
+                toast.success("Added product to basket!");
+            } catch (e) {
+                toast.error("Couldn't add product");
+            }
         } else {
             const updatedQuantity = item.quantity - quantity;
-            agent.Basket.removeItem(product.id, updatedQuantity)
-                .then(() => removeItem(product.id, updatedQuantity))
-                .catch(error => console.log(error))
-                .finally(() => setSubmitting(false));
+            try {
+                const { data } = await removeProduct(product.id, updatedQuantity)
+                setBasket(data)
+                toast.success("Removed product from basket!");
+            } catch (e) {
+                toast.error("Couldn't remove product");
+            }
         }
 
         navigate('/catalog');
