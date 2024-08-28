@@ -61,7 +61,7 @@ class NewProduct extends Form {
                     <Avatar
                         src={pictureUrl || config.DEFAULT_IMAGE_URL}
                         alt="Product Image"
-                        sx={{ width: 100, height: 100, marginBottom: 2 }}
+                        sx={{ width: 100, height: 100, marginBottom: 2, marginTop: 2}}
                     />
                     <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
                         {this.renderInput("name", "Name")}
