@@ -10,7 +10,7 @@ import Loading from './components/Loading.tsx';
 import AppRoutes from "./router/Routes.tsx";
 
 function App() {
-  const { setBasket, isAdmin, isAuthenticated } = useStoreContext();
+  const { setBasket, isAuthenticated } = useStoreContext();
   const [loading, setLoading] = useState(true);
 
   // Check localStorage for dark mode preference on mount
