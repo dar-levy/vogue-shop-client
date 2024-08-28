@@ -18,7 +18,7 @@ import {toast} from "react-toastify";
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate(); // Use navigate to redirect after deletion
-    const { basket, setBasket, removeItem, handleRemoveItem, isAdmin } = useStoreContext();
+    const { basket, setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
@@ -61,7 +61,7 @@ export default function ProductDetails() {
             } catch (e) {
                 toast.error("Couldn't add product");
             } finally {
-                setLoading(false);
+                setSubmitting(false);
             }
         } else {
             const updatedQuantity = item.quantity - quantity;
@@ -73,7 +73,7 @@ export default function ProductDetails() {
             } catch (e) {
                 toast.error("Couldn't remove product");
             } finally {
-                setLoading(false);
+                setSubmitting(false);
             }
         }
     }
