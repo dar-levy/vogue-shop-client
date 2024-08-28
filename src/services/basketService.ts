@@ -7,7 +7,7 @@ function basketUrl(id: number, quantity: number) {
     return `${apiEndpoint}?productId=${id}&quantity=${quantity}`;
 }
 
-export function getBasket() {
+export function get() {
     return http.get(`${apiEndpoint}`);
 }
 

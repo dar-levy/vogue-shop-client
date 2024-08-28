@@ -2,12 +2,14 @@ import './App.css';
 import {Container, createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import { useEffect, useState } from "react";
 import Header from "./components/Header.tsx";
-import { ToastContainer } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 import AppRoutes from "./router/Routes.tsx";
+import * as basket from "./services/basketService.ts"
+import logger from "./services/logService.ts"
 
 function App() {
   const { setBasket, isAuthenticated } = useStoreContext();
@@ -33,14 +35,14 @@ function App() {
     document.body.style.backgroundColor = theme.palette.background.default;
     setBasket(agent.Basket.get());
     setLoading(false);
-    if (isAuthenticated) {
-      // agent.Basket.get()
-      //     .then(basket => setBasket(basket))
-      //     .catch(error => console.log(error))
-      //     .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
+    // try {
+    //   const { data } = await basket.get()
+    //   setBasket(data)
+    //   setLoading(false)
+    // } catch (err) {
+    //   logger.log(err)
+    //   setLoading(false)
+    // }
   }, [theme.palette.background.default]);
 
   function handleThemeChange() {
