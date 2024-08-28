@@ -5,10 +5,9 @@ import Cookies from 'js-cookie';
 import http from './httpService';
 import config from '../config.json';
 
-const apiEndpoint = config.apiUrl + '/login';
 
 export async function login(username, password, rememberMe) {
-    const { data } = await http.post(apiEndpoint, { username, password, rememberMe });
+    const { data } = await http.post(`${config.apiUrl}/login`, { username, password, rememberMe });
     return data;
 }
 
