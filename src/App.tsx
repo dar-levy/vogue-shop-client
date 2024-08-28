@@ -26,7 +26,12 @@ import ActivityHistory from "./components/ActivityHistory.tsx";
 function App() {
   const { setBasket, isAdmin, isAuthenticated } = useStoreContext();
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+
+  // Check localStorage for dark mode preference on mount
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode === 'true';  // Default to false if not found
+  });
 
   const paletteType = darkMode ? 'dark' : 'light';
   const theme = createTheme({
@@ -40,8 +45,8 @@ function App() {
 
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.background.default;
-    setBasket(agent.Basket.get())
-    setLoading(false)
+    setBasket(agent.Basket.get());
+    setLoading(false);
     if (isAuthenticated) {
       // agent.Basket.get()
       //     .then(basket => setBasket(basket))
@@ -53,10 +58,13 @@ function App() {
   }, [theme.palette.background.default]);
 
   function handleThemeChange() {
-    setDarkMode(!darkMode);
+    setDarkMode(prevMode => {
+      localStorage.setItem('darkMode', !prevMode);  // Save the mode to localStorage
+      return !prevMode;
+    });
   }
 
-  if (loading) return <Loading message='Initiasing app...' />
+  if (loading) return <Loading message='Initializing app...' />
 
   return (
       <>
