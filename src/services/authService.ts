@@ -5,16 +5,10 @@ import Cookies from 'js-cookie';
 import http from './httpService';
 import config from '../config.json';
 
-const apiEndpoint = config.apiUrl + '/auth';
+const apiEndpoint = config.apiUrl + '/login';
 
-export async function login(email, password, rememberMe) {
-    const { data } = await http.post(apiEndpoint, { email, password });
-    if (rememberMe) {
-        Cookies.set('rememberMe', 'true', { expires: 10 });
-    } else {
-        Cookies.set('rememberMe', 'true', { expires: 0.02083 });
-    }
-
+export async function login(username, password, rememberMe) {
+    const { data } = await http.post(apiEndpoint, { username, password, rememberMe });
     return data;
 }
 
