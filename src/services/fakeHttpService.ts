@@ -6,7 +6,7 @@ import {ActivityHistory} from "../models/activity-history.ts";
 
 export const fakeProducts: Product[] = [
     {
-        id: 1,
+        id: "1",
         name: "Flight Heritage",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -17,7 +17,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 2,
+        id: "2",
         name: "Brooklyn Fleece",
         description:
             "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
@@ -28,7 +28,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 3,
+        id: "3",
         name: "Sportswear",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -39,7 +39,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 4,
+        id: "4",
         name: "Club Alumni",
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -50,7 +50,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 5,
+        id: "5",
         name: "Sportswear Essentials",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -61,7 +61,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 6,
+        id: "6",
         name: "One Classic",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -72,7 +72,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 7,
+        id: "7",
         name: "One Classic",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -83,7 +83,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 8,
+        id: "8",
         name: "Sportswear",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -94,7 +94,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 9,
+        id: "9",
         name: "Sportswear Tech Fleece",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -105,7 +105,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 10,
+        id: "10",
         name: "Sportswear",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -116,7 +116,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 11,
+        id: "11",
         name: "F.C. Barcelona 2024/25",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -127,7 +127,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 12,
+        id: "12",
         name: "LeBron NXXT Gen AMPD\n",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -138,7 +138,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 13,
+        id: "13",
         name: "Los Angeles Lakers 2022/23",
         description:
             "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -149,7 +149,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 14,
+        id: "14",
         name: "Paris Saint-Germain 2024/25",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -160,7 +160,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 15,
+        id: "15",
         name: "Flight MVP",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -171,7 +171,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 16,
+        id: "16",
         name: "Curry Golden State Warriors",
         description:
             "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -182,7 +182,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 17,
+        id: "17",
         name: "FFF (Men's Team) 2024/25 Stadium Away",
         description: "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
         price: 399.90,
@@ -192,7 +192,7 @@ export const fakeProducts: Product[] = [
         quantityInStock: 100,
     },
     {
-        id: 18,
+        id: "18",
         name: "Stephen Curry Golden State Warriors 2023/24 City Edition",
         description:
             "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
