@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import Form from "../common/Form.tsx";
 import {Avatar, Box, Container, Typography} from "@mui/material";
 import React from "react";
+import * as config from "../../config.json"
+
 
 class NewProduct extends Form {
     state = {
@@ -56,13 +58,11 @@ class NewProduct extends Form {
                     <Typography component="h1" variant="h3" color="text.primary">
                         New Product
                     </Typography>
-                    {pictureUrl && (
-                        <Avatar
-                            src={pictureUrl}
-                            alt="Product Image"
-                            sx={{ width: 100, height: 100, marginBottom: 2 }}
-                        />
-                    )}
+                    <Avatar
+                        src={pictureUrl || config.DEFAULT_IMAGE_URL}
+                        alt="Product Image"
+                        sx={{ width: 100, height: 100, marginBottom: 2 }}
+                    />
                     <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
                         {this.renderInput("name", "Name")}
                         {this.renderInput("description", "Description")}
