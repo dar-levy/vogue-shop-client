@@ -4,9 +4,10 @@ import { Review } from '../models/review';
 import { NewArrival } from "../models/new-arrival.ts";
 import { Product } from "../models/product.ts";
 import Cookies from 'js-cookie';
-import agent from "../services/agent.ts";
 import {User} from "../models/user.ts";
 import config from "../config.json";
+import {toast} from "react-toastify";
+import {deleteProduct} from "../services/productService.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -67,9 +68,15 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
-    function handleRemoveItem(productId: number) {
-        const updatedProducts = agent.Catalog.delete(productId);
-        setProducts(updatedProducts);
+    async function handleRemoveItem(productId: number) {
+        try {
+            await deleteProduct(productId);
+            setProducts(prevProducts => prevProducts.filter(p => p.id !== productId));
+            toast.success("Successfully deleted");
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404) console.log("x");
+            toast.error("This profile has already been deleted.");
+        }
     }
 
     function clearItems() {
