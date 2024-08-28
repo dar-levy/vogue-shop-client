@@ -20,9 +20,11 @@ class NewProduct extends Form {
 
     schema = {
         _id: Joi.string(),
-        first_name: Joi.string().required().label("First Name"),
-        last_name: Joi.string().required().label("Last Name"),
-        email: Joi.string().required().email().label("Email"),
+        name: Joi.string().required().label("Name"),
+        description: Joi.string().required().label("Description"),
+        price: Joi.integer().required().label("Price"),
+        brand: Joi.string().required().label("Brand"),
+        type: Joi.string().required().label("Type"),
         pictureUrl: Joi.string().required().uri().label("Image URL"),
     };
 
