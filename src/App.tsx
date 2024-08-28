@@ -32,7 +32,6 @@ function App() {
   });
 
   useEffect(() => {
-    document.body.style.backgroundColor = theme.palette.background.default;
     setBasket(agent.Basket.get());
     setLoading(false);
     // try {
@@ -43,7 +42,7 @@ function App() {
     //   logger.log(err)
     //   setLoading(false)
     // }
-  }, [theme.palette.background.default]);
+  }, []);
 
   function handleThemeChange() {
     setDarkMode(prevMode => {
