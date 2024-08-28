@@ -67,7 +67,7 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
                     </Typography>
                     <Switch checked={darkMode} onChange={handleThemeChange} />
                     <Typography variant='h6'>
-                        Hi {user.name}!
+                        Hi {user?.name}!
                     </Typography>
                 </Box>
 

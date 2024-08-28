@@ -45,7 +45,7 @@ function App() {
 
   function handleThemeChange() {
     setDarkMode(prevMode => {
-      localStorage.setItem('darkMode', !prevMode);  // Save the mode to localStorage
+      localStorage.setItem('darkMode', String(!prevMode));  // Save the mode to localStorage
       return !prevMode;
     });
   }

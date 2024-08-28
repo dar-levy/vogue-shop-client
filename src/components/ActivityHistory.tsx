@@ -33,7 +33,6 @@ const ActivityHistoryComponent: React.FC = () => {
                                 key={activity.id}
                                 sx={{
                                     '&:hover': {
-                                        backgroundColor: '#f5f5f5',
                                         transform: 'scale(1.05)',
                                         transition: 'transform 0.2s ease-in-out',
                                     },
