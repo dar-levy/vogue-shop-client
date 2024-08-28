@@ -5,29 +5,40 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Summary from './Summary.tsx';
 import { Link } from 'react-router-dom';
-import agent from "../../services/agent.ts";
+import {addProduct, removeProduct} from "../../services/basketService.ts";
+import {toast} from "react-toastify";
 
 export default function Basket() {
-    const { basket, setBasket, removeItem } = useStoreContext();
+    const { basket, setBasket} = useStoreContext();
     const [status, setStatus] = useState({
         loading: false,
         name: ''
     });
 
-    function handleAddItem(productId: number, name: string) {
-        setStatus({ loading: true, name });
-        agent.Basket.addItem(productId)
-            .then(basket => setBasket(basket))
-            .catch(error => console.log(error))
-            .finally(() => setStatus({ loading: false, name: '' }))
+    async function handleAddItem(productId: number, name: string) {
+        try {
+            setStatus({ loading: true, name });
+            const { data } = await addProduct(productId)
+            setBasket(data)
+            toast.success("Added product to basket!");
+        } catch (e) {
+            toast.error("Couldn't add product");
+        } finally {
+            setStatus({ loading: false, name: '' })
+        }
     }
 
-    function handleRemoveItem(productId: number, quantity = 1, name: string) {
-        setStatus({ loading: true, name });
-        agent.Basket.removeItem(productId, quantity)
-            .then(() => removeItem(productId, quantity))
-            .catch(error => console.log(error))
-            .finally(() => setStatus({ loading: false, name: '' }))
+    async function handleRemoveItem(productId: number, quantity = 1, name: string) {
+        try {
+            setStatus({ loading: true, name });
+            const { data } = await removeProduct(productId, quantity)
+            setBasket(data)
+            toast.success("Removed product from basket!");
+        } catch (e) {
+            toast.error("Couldn't remove product");
+        } finally {
+            setStatus({ loading: false, name: '' })
+        }
     }
 
     return (

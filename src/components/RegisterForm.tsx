@@ -6,7 +6,7 @@ import Joi from "joi-browser";
 import * as userService from "../services/userService";
 import { toast } from "react-toastify";
 import Form from "./common/Form.tsx";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 
 class RegisterForm extends Form {
   state = {
@@ -34,25 +34,6 @@ class RegisterForm extends Form {
     }
   };
 
-  renderTextField(name, label, type = "text") {
-    const { data, errors } = this.state;
-
-    return (
-        <TextField
-            fullWidth
-            variant="outlined"
-            margin="normal"
-            name={name}
-            label={label}
-            type={type}
-            value={data[name]}
-            onChange={this.handleChange}
-            error={!!errors[name]}
-            helperText={errors[name]}
-        />
-    );
-  }
-
   render() {
     return (
         <Container component="main" maxWidth="xs">
@@ -68,18 +49,10 @@ class RegisterForm extends Form {
               Register
             </Typography>
             <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
-              {this.renderTextField("username", "Username")}
-              {this.renderTextField("password", "Password", "password")}
-              {this.renderTextField("name", "Name")}
-              <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  sx={{ mt: 3, mb: 2 }}
-              >
-                Register
-              </Button>
+                {this.renderInput("username", "Username")}
+                {this.renderInput("password", "Password", "password")}
+                {this.renderInput("name", "Name")}
+                {this.renderButton("Register")}
             </Box>
           </Box>
         </Container>

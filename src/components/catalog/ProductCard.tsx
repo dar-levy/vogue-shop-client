@@ -1,11 +1,16 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Button, Card, CardActions, CardContent, CardMedia, Typography, IconButton } from "@mui/material";
 import { Product } from "../../models/product.ts";
 import { useState } from "react";
 import { useStoreContext } from "../../context/StoreContext.tsx";
-import agent from "../../services/agent.ts";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Link } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';  // Import Delete icon
+import DeleteIcon from '@mui/icons-material/Delete';
+import {addProduct} from "../../services/basketService.ts";
+import {toast} from "react-toastify";
+
 
 interface Props {
     product: Product;
@@ -15,12 +20,17 @@ export default function ProductCard({ product }: Props) {
     const { setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [loading, setLoading] = useState(false);
 
-    function handleAddItem(productId: number) {
+    async function handleAddItem(productId: number) {
         setLoading(true);
-        agent.Basket.addItem(productId)
-            .then(basket => setBasket(basket))
-            .catch(error => console.log(error))
-            .finally(() => setLoading(false))
+        try {
+            const { data } = await addProduct(productId)
+            setBasket(data)
+            setLoading(false);
+            toast.success("Added product to basket!");
+        } catch (e) {
+            toast.error("Couldn't add product");
+            setLoading(false);
+        }
     }
 
     function handleDeleteClick() {

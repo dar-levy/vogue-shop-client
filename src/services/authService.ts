@@ -5,32 +5,21 @@ import Cookies from 'js-cookie';
 import http from './httpService';
 import config from '../config.json';
 
-const apiEndpoint = config.apiUrl + '/auth';
 
-export async function login(email, password, rememberMe) {
-    const { data } = await http.post(apiEndpoint, { email, password });
-    if (rememberMe) {
-        Cookies.set('rememberMe', 'true', { expires: 10 });
-    } else {
-        Cookies.set('rememberMe', 'true', { expires: 0.02083 });
-    }
-
+export async function login(username, password, rememberMe) {
+    const { data } = await http.post(`${config.apiUrl}/login`, { username, password, rememberMe });
     return data;
 }
 
 export function logout() {
-    http.post(`${apiEndpoint}/logout`).then(() => {
-        Cookies.remove('rememberMe');
+    http.post(`${config.apiUrl}/logout`).then(() => {
+        Cookies.remove(config.cookieName);
     });
 }
 
 export function getCurrentUser() {
-    try {
-        const user = http.get(`${apiEndpoint}/me`);
-        return user;
-    } catch (ex) {
-        return null;
-    }
+    const cookie = Cookies.get(config.cookieName);
+    return cookie ? JSON.parse(cookie)?.name || null : null;
 }
 
 export default {

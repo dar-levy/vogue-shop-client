@@ -11,11 +11,14 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
 import Loading from '../Loading.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {addProduct, removeProduct} from "../../services/basketService.ts";
+import {toast} from "react-toastify";
+
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate(); // Use navigate to redirect after deletion
-    const { basket, setBasket, removeItem, handleRemoveItem, isAdmin } = useStoreContext();
+    const { basket, setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(0);
@@ -25,9 +28,19 @@ export default function ProductDetails() {
     useEffect(() => {
         if (item) setQuantity(item.quantity);
         if (id) {
-            setProduct(agent.Catalog.details(parseInt(id)));
+            setProduct(agent.Catalog.details(id));
             setLoading(false);
         }
+        // try {
+        //     if (item) setQuantity(item.quantity);
+        //     if (id) {
+        //         const {data} = await getProduct(parseInt(id));
+        //         setProduct(data);
+        //         setLoading(false);
+        //     }
+        // } catch (err) {
+        //     return this.props.navigate("/not-found");
+        // }
     }, [id, item]);
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -35,28 +48,39 @@ export default function ProductDetails() {
             setQuantity(parseInt(event.currentTarget.value));
     }
 
-    function handleUpdateCart() {
+    async function handleUpdateCart() {
         if (!product) return;
         setSubmitting(true);
         if (!item || quantity > item?.quantity) {
             const updatedQuantity = item ? quantity - item.quantity : quantity;
-            agent.Basket.addItem(product.id, updatedQuantity)
-                .then(basket => setBasket(basket))
-                .catch(error => console.log(error))
-                .finally(() => setSubmitting(false));
+            try {
+                const { data } = await addProduct(product.id, updatedQuantity)
+                setBasket(data)
+                toast.success("Added product to basket!");
+                navigate('/catalog');
+            } catch (e) {
+                toast.error("Couldn't add product");
+            } finally {
+                setSubmitting(false);
+            }
         } else {
             const updatedQuantity = item.quantity - quantity;
-            agent.Basket.removeItem(product.id, updatedQuantity)
-                .then(() => removeItem(product.id, updatedQuantity))
-                .catch(error => console.log(error))
-                .finally(() => setSubmitting(false));
+            try {
+                const { data } = await removeProduct(product.id, updatedQuantity)
+                setBasket(data)
+                toast.success("Removed product from basket!");
+                navigate('/catalog');
+            } catch (e) {
+                toast.error("Couldn't remove product");
+            } finally {
+                setSubmitting(false);
+            }
         }
     }
 
     function handleDeleteProduct() {
         if (!product) return;
         handleRemoveItem(product.id);
-        navigate('/catalog');  // Redirect to catalog after deletion
     }
 
     if (loading) return <Loading message='Loading product...' />

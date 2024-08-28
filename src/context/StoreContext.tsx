@@ -1,11 +1,16 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { PropsWithChildren, createContext, useContext, useState, useEffect } from 'react';
 import { Basket } from '../models/basket';
 import { Review } from '../models/review';
 import { NewArrival } from "../models/new-arrival.ts";
 import { Product } from "../models/product.ts";
 import Cookies from 'js-cookie';
-import agent from "../services/agent.ts";
 import {User} from "../models/user.ts";
+import config from "../config.json";
+import {toast} from "react-toastify";
+import {deleteProduct, saveProduct} from "../services/productService.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -46,7 +51,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const userCookie = Cookies.get('vogue-user');
+        const userCookie = Cookies.get(config.cookieName);
         if (userCookie) {
             const cookieUser = JSON.parse(userCookie);
             setUser(cookieUser);
@@ -66,9 +71,27 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
-    function handleRemoveItem(productId: number) {
-        const updatedProducts = agent.Catalog.delete(productId);
-        setProducts(updatedProducts);
+    async function handleRemoveItem(productId: number) {
+        try {
+            await deleteProduct(productId);
+            setProducts(() => products.filter(p => p.id !== productId));
+            navigate('/catalog');
+            toast.success("Successfully deleted");
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404) console.log("x");
+            toast.error("Couldn't delete product");
+        }
+    }
+
+    async function handleAddNewProduct(product: Product) {
+        try {
+            await saveProduct(this.state.data);
+            setProducts([...products, product])
+            window.location("/catalog");
+            toast.success("Saved successfully.");
+        } catch (err) {
+            toast.error("Could not save the product");
+        }
     }
 
     function clearItems() {
@@ -91,6 +114,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             isAdmin,
             isAuthenticated,
             user,
+            handleAddNewProduct
         }}>
             {children}
         </StoreContext.Provider>

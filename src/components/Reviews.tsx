@@ -16,6 +16,12 @@ const Reviews: React.FC = () => {
     useEffect(() => {
         const fetchedReviews: Review[] = agent.Reviews.get()
         setReviews(fetchedReviews);
+        // try {
+        //     const { data } = await getReviews()
+        //     setReviews(data);
+        // } catch (err) {
+        //     toast.error("Could not get the products");
+        // }
     }, [setReviews]);
 
     return (

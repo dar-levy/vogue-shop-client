@@ -13,7 +13,6 @@ function App() {
   const { setBasket, isAuthenticated } = useStoreContext();
   const [loading, setLoading] = useState(true);
 
-  // Check localStorage for dark mode preference on mount
   const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode === 'true';  // Default to false if not found
@@ -30,18 +29,17 @@ function App() {
   });
 
   useEffect(() => {
-    document.body.style.backgroundColor = theme.palette.background.default;
     setBasket(agent.Basket.get());
     setLoading(false);
-    if (isAuthenticated) {
-      // agent.Basket.get()
-      //     .then(basket => setBasket(basket))
-      //     .catch(error => console.log(error))
-      //     .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
-    }
-  }, [theme.palette.background.default]);
+    // try {
+    //   const { data } = await getBasket()
+    //   setBasket(data)
+    //   setLoading(false)
+    // } catch (err) {
+    //   logger.log(err)
+    //   setLoading(false)
+    // }
+  }, []);
 
   function handleThemeChange() {
     setDarkMode(prevMode => {

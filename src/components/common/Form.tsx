@@ -3,7 +3,7 @@
 
 import { Component } from "react";
 import Joi from "joi-browser";
-import Input from "./Input.tsx";
+import { TextField, Button, Grid, Paper, Typography } from "@mui/material";
 
 class Form extends Component {
   state = {
@@ -52,9 +52,15 @@ class Form extends Component {
 
   renderButton(label) {
     return (
-      <button disabled={this.validate()} className="btn btn-primary">
-        {label}
-      </button>
+        <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={!!this.validate()}
+            fullWidth
+        >
+          {label}
+        </Button>
     );
   }
 
@@ -62,14 +68,33 @@ class Form extends Component {
     const { data, errors } = this.state;
 
     return (
-      <Input
-        type={type}
-        name={name}
-        value={data[name]}
-        label={label}
-        onChange={this.handleChange}
-        error={errors[name]}
-      />
+        <TextField
+            variant="outlined"
+            fullWidth
+            type={type}
+            name={name}
+            value={data[name]}
+            label={label}
+            onChange={this.handleChange}
+            error={Boolean(errors[name])}
+            helperText={errors[name]}
+            margin="normal"
+        />
+    );
+  }
+
+  renderForm(title, children) {
+    return (
+        <Paper elevation={3} sx={{ padding: 3, maxWidth: 600, margin: "auto" }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            {title}
+          </Typography>
+          <form onSubmit={this.handleSubmit}>
+            <Grid container spacing={2}>
+              {children}
+            </Grid>
+          </form>
+        </Paper>
     );
   }
 }
