@@ -36,13 +36,8 @@ class NewProduct extends Form {
     };
 
     doSubmit = async () => {
-        try {
-            await saveProduct(this.state.data);
-            window.location("/catalog");
-            toast.success("Saved successfully.");
-        } catch (err) {
-            toast.error("Could not save the product");
-        }
+        const { handleAddNewProduct } = this.props;
+        handleAddNewProduct(this.state.data)
     };
 
     render() {

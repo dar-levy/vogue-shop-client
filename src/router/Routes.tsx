@@ -18,7 +18,7 @@ import LoginForm from '../components/LoginForm.tsx';
 import NewProduct from "../components/catalog/NewProduct.tsx";
 
 const AppRoutes: React.FC = () => {
-    const { isAdmin, isAuthenticated } = useStoreContext();
+    const { isAdmin, isAuthenticated , handleAddNewProduct} = useStoreContext();
 
     return (
         <Routes>
@@ -30,7 +30,7 @@ const AppRoutes: React.FC = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/reviews" element={<Reviews />} />
                     <Route path="/new-arrivals" element={<NewArrivals />} />
-                    {isAdmin && <Route path="/new-product" element={<NewProduct />} />}
+                    {isAdmin && <Route path="/new-product" element={<NewProduct handleAddNewProduct={handleAddNewProduct}/>} />}
                     {isAdmin && <Route path="/activity-history" element={<ActivityHistory />} />}
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/checkout" element={<Checkout />} />
