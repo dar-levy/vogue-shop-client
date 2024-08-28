@@ -9,7 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function Catalog() {
     const [loading, setLoading] = useState(true);
-    const { products, setProducts } = useStoreContext();
+    const { products, setProducts, isAdmin } = useStoreContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,19 +26,18 @@ export default function Catalog() {
     if (loading) return <Loading message='Loading products...' />
 
     return (
-        <div style={{ position: 'relative' }}>
-            {/* Floating Action Button */}
-            <Fab
-                color="primary"
-                aria-label="add"
-                style={{ position: 'absolute', top: 16, right: 16 }}
-                onClick={() => navigate('/new-product')}
-            >
-                <AddIcon />
-            </Fab>
+        <div style={{position: 'relative', paddingTop: '20px'}}>
+            {isAdmin && <div style={{position: 'fixed', top: '80px', right: '20px', zIndex: 1000}}>
+                <Fab
+                    color="primary"
+                    aria-label="add"
+                    onClick={() => navigate('/new-product')}
+                >
+                    <AddIcon/>
+                </Fab>
+            </div>}
 
-            {/* Products Grid */}
-            <ProductsGrid products={products} />
+            <ProductsGrid products={products}/>
         </div>
     )
 }
