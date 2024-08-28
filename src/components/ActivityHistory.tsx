@@ -9,6 +9,12 @@ const ActivityHistoryComponent: React.FC = () => {
     useEffect(() => {
         const data = agent.ActivityHistory.get();
         setActivityHistory(data);
+        // try {
+        //     const { data } = await getActivityHistory()
+        //     setActivityHistory(data);
+        // } catch (err) {
+        //     toast.error("Could not get the activity history");
+        // }
     }, []);
 
     return (
