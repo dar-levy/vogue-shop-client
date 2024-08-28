@@ -10,9 +10,11 @@ import Form from "../common/Form.tsx";
 class NewProduct extends Form {
     state = {
         data: {
-            first_name: "",
-            last_name: "",
-            email: "",
+            name: "",
+            description: "",
+            price: "",
+            brand: "",
+            type: "",
             pictureUrl: "",
         },
         errors: {},
@@ -28,34 +30,13 @@ class NewProduct extends Form {
         pictureUrl: Joi.string().required().uri().label("Image URL"),
     };
 
-    async componentDidMount() {
-        try {
-            const profileId = this.props.params.id;
-            if (profileId === "new") return;
-            const { data: profile } = await getProfile(profileId);
-            this.setState({ data: this.mapToViewModel(profile) });
-        } catch (err) {
-            return this.props.navigate("/not-found");
-        }
-    }
-
-    mapToViewModel(profile) {
-        return {
-            _id: profile._id,
-            first_name: profile.first_name,
-            last_name: profile.last_name,
-            email: profile.email,
-            pictureUrl: profile.pictureUrl,
-        };
-    }
-
     doSubmit = async () => {
         try {
-            await saveProfile(this.state.data);
-            this.props.navigate("/profiles");
-            toast.success("Success");
+            await saveProduct(this.state.data);
+            this.props.navigate("/catalog");
+            toast.success("Saved successfully.");
         } catch (err) {
-            toast.error("Could not save the profile");
+            toast.error("Could not save the product");
         }
     };
 
