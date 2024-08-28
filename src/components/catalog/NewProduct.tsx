@@ -4,6 +4,8 @@
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 import Form from "../common/Form.tsx";
+import {Box, Container, Typography} from "@mui/material";
+import React from "react";
 
 class NewProduct extends Form {
     state = {
@@ -42,23 +44,30 @@ class NewProduct extends Form {
         const { pictureUrl } = this.state.data;
 
         return (
-            <div className="profile-form-container">
-                <h1>Product Form</h1>
-                {pictureUrl && (
-                    <div className="avatar-container">
-                        <img src={pictureUrl} alt="Picture URL" className="avatar" />
-                    </div>
-                )}
-                <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("name", "Name")}
-                    {this.renderInput("description", "Description")}
-                    {this.renderInput("price", "Price")}
-                    {this.renderInput("brand", "Brand")}
-                    {this.renderInput("type", "Type")}
-                    {this.renderInput("pictureUrl", "Picture URL")}
-                    {this.renderButton("Save")}
-                </form>
-            </div>
+
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Typography component="h1" variant="h3" color="text.primary">
+                        New Product
+                    </Typography>
+                    <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
+                        {this.renderInput("name", "Name")}
+                        {this.renderInput("description", "Description")}
+                        {this.renderInput("price", "Price")}
+                        {this.renderInput("brand", "Brand")}
+                        {this.renderInput("type", "Type")}
+                        {this.renderInput("pictureUrl", "Picture URL")}
+                        {this.renderButton("Save")}
+                    </Box>
+                </Box>
+            </Container>
         );
     }
 }
