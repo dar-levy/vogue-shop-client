@@ -45,17 +45,19 @@ class NewProduct extends Form {
 
         return (
             <div className="profile-form-container">
-                <h1>Profile Form</h1>
+                <h1>Product Form</h1>
                 {pictureUrl && (
                     <div className="avatar-container">
                         <img src={pictureUrl} alt="Picture URL" className="avatar" />
                     </div>
                 )}
                 <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("first_name", "First Name")}
-                    {this.renderInput("last_name", "Last Name")}
-                    {this.renderInput("email", "Email")}
-                    {this.renderInput("pictureUrl", "Image URL")}
+                    {this.renderInput("name", "Name")}
+                    {this.renderInput("description", "Description")}
+                    {this.renderInput("price", "Price")}
+                    {this.renderInput("brand", "Brand")}
+                    {this.renderInput("type", "Type")}
+                    {this.renderInput("pictureUrl", "Picture URL")}
                     {this.renderButton("Save")}
                 </form>
             </div>
