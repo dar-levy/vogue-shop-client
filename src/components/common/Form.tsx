@@ -39,13 +39,19 @@ class Form extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
     const data = { ...this.state.data };
     if (input.type === "checkbox") {
       data[input.name] = input.checked;
     } else {
       data[input.name] = input.value;
     }
-    this.setState({ data });
+
+    this.setState({ data, errors });
   };
 
   renderButton(label) {
