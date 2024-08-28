@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import {User} from "../models/user.ts";
 import config from "../config.json";
 import {toast} from "react-toastify";
-import {deleteProduct} from "../services/productService.ts";
+import {deleteProduct, saveProduct} from "../services/productService.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -83,6 +83,17 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
+    async function handleAddNewProduct(product: Product) {
+        try {
+            await saveProduct(this.state.data);
+            setProducts([...products, product])
+            window.location("/catalog");
+            toast.success("Saved successfully.");
+        } catch (err) {
+            toast.error("Could not save the product");
+        }
+    }
+
     function clearItems() {
         setBasket(null);
     }
@@ -103,6 +114,7 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             isAdmin,
             isAuthenticated,
             user,
+            handleAddNewProduct
         }}>
             {children}
         </StoreContext.Provider>
