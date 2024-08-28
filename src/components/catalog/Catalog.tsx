@@ -14,7 +14,7 @@ export default function Catalog() {
     const [loading, setLoading] = useState(true);
     const { products, setProducts } = useStoreContext();
 
-    useEffect(async () => {
+    useEffect(() => {
         setProducts(agent.Catalog.list())
         setLoading(false)
         // try {

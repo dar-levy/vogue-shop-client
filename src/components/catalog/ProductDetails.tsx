@@ -11,6 +11,7 @@ import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
 import Loading from '../Loading.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {getProduct} from "../../services/productService.ts";
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -28,6 +29,16 @@ export default function ProductDetails() {
             setProduct(agent.Catalog.details(parseInt(id)));
             setLoading(false);
         }
+        // try {
+        //     if (item) setQuantity(item.quantity);
+        //     if (id) {
+        //         const {data} = await getProduct(parseInt(id));
+        //         setProduct(data);
+        //         setLoading(false);
+        //     }
+        // } catch (err) {
+        //     return this.props.navigate("/not-found");
+        // }
     }, [id, item]);
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
