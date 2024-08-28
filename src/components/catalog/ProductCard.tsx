@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-    const { setBasket, handleRemoveItem, isAdmin, addItem } = useStoreContext();
+    const { setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [loading, setLoading] = useState(false);
 
     function handleAddItem(productId: number) {
@@ -25,9 +25,10 @@ export default function ProductCard({ product }: Props) {
             .finally(() => setLoading(false))
 
         // try {
-        //     await addProduct(productId)
-        //     addItem(productId)
+        //     const { data } = await addProduct(productId)
+        //     setBasket(data)
         //     setLoading(false);
+        //     toast.success("Added product to basket!");
         // } catch (e) {
         //     toast.error("Couldn't add product");
         //     setLoading(false);
