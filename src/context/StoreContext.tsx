@@ -88,8 +88,10 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
             console.log(product);
             await saveProduct(product);
             setProducts([...products, product])
-            window.location = "/catalog";
             toast.success("Saved successfully.");
+            setTimeout(() => {
+                window.location = "/";
+            }, 500);
         } catch (err) {
             toast.error("Could not save the product");
         }
