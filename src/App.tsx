@@ -31,14 +31,18 @@ function App() {
   useEffect(() => {
     setBasket(agent.Basket.get());
     setLoading(false);
-    // try {
-    //   const { data } = await getBasket()
-    //   setBasket(data)
-    //   setLoading(false)
-    // } catch (err) {
-    //   logger.log(err)
-    //   setLoading(false)
+    // const fetchBasket = async () => {
+    //     try {
+    //       const { data } = await getBasket()
+    //       console.log("fetchBasket", data)
+    //       setBasket(data)
+    //       setLoading(false)
+    //     } catch (err) {
+    //       setLoading(false)
+    //     }
     // }
+    //
+    // fetchBasket();
   }, []);
 
   function handleThemeChange() {

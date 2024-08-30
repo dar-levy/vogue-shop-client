@@ -28,10 +28,10 @@ export default function Basket() {
         }
     }
 
-    async function handleRemoveItem(productId: number, quantity = 1, name: string) {
+    async function handleRemoveItem(productId: number, name: string) {
         try {
             setStatus({ loading: true, name });
-            const { data } = await removeProduct(productId, quantity)
+            const { data } = await removeProduct(productId)
             setBasket(data)
             toast.success("Removed product from basket!");
         } catch (e) {
@@ -49,9 +49,9 @@ export default function Basket() {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Product</TableCell>
+                                <TableCell>Type</TableCell>
+                                <TableCell>Brand</TableCell>
                                 <TableCell align="right">Price</TableCell>
-                                <TableCell align="center">Quantity</TableCell>
-                                <TableCell align="right">Subtotal</TableCell>
                                 <TableCell align="right"></TableCell>
                             </TableRow>
                         </TableHead>
@@ -68,29 +68,13 @@ export default function Basket() {
                                                 <span>{item.name}</span>
                                             </Box>
                                         </TableCell>
+                                        <TableCell>{item.type}</TableCell>
+                                        <TableCell>{item.brand}</TableCell>
                                         <TableCell align="right">₪{item.price}</TableCell>
-                                        <TableCell align="center">
-                                            <LoadingButton
-                                                color='error'
-                                                loading={status.loading && status.name === 'rem' + item.productId}
-                                                onClick={() => handleRemoveItem(item.productId, 1, 'rem' + item.productId)}
-                                            >
-                                                <Remove />
-                                            </LoadingButton>
-                                            {item.quantity}
-                                            <LoadingButton
-                                                loading={status.loading && status.name === 'add' + item.productId}
-                                                onClick={() => handleAddItem(item.productId, 'add' + item.productId)}
-                                                color='secondary'
-                                            >
-                                                <Add />
-                                            </LoadingButton>
-                                        </TableCell>
-                                        <TableCell align="right">₪{item.price * item.quantity}</TableCell>
                                         <TableCell align="right">
                                             <LoadingButton
                                                 loading={status.loading && status.name === 'del' + item.productId}
-                                                onClick={() => handleRemoveItem(item.productId, item.quantity, 'del' + item.productId)}
+                                                onClick={() => handleRemoveItem(item.productId, 'del' + item.productId)}
                                                 color='error'
                                             >
                                                 <Delete />
