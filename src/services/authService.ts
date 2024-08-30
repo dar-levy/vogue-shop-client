@@ -12,9 +12,7 @@ export async function login(username, password, rememberMe) {
 }
 
 export function logout() {
-    http.post(`${config.apiUrl}/logout`).then(() => {
-        Cookies.remove(config.cookieName);
-    });
+    http.post(`${config.apiUrl}/logout`)
 }
 
 export function getCurrentUser() {

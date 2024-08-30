@@ -3,11 +3,13 @@
 
 import { Component } from "react";
 import auth from "../services/authService";
+import Cookies from "js-cookie";
+import config from "../config.json";
 
 class LogoutForm extends Component {
   componentDidMount() {
     auth.logout();
-
+    Cookies.remove(config.cookieName);
     window.location = "/";
   }
 
