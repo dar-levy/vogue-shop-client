@@ -209,7 +209,7 @@ export const fakeBasket: Basket = {
     buyerId: "Dar",
     items: [
     {
-        productId: 1,
+        productId: "1",
         name: "Flight Heritage",
         price: 349.90,
         pictureUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/589f5247-aa82-4cae-b154-4812e15a93c3/M+J+FLT+HRTG+DENIM+AOP+TOP.png",
@@ -218,7 +218,7 @@ export const fakeBasket: Basket = {
         quantity: 1,
     },
     {
-        productId: 2,
+        productId: "2",
         name: "Brooklyn Fleece",
         price: 199.90,
         pictureUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4a1675fe-847e-4307-babf-a4a307b953a6/M+J+ESS+FLC+PANT.png",

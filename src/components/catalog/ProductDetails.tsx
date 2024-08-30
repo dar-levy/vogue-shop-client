@@ -123,7 +123,7 @@ export default function ProductDetails() {
                 <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
                     <Grid item xs={4}>
                         <LoadingButton
-                            disabled={() => item ? true : false}
+                            disabled={item ? true : false}
                             loading={submitting}
                             onClick={handleUpdateCart}
                             sx={{ height: '55px' }}
