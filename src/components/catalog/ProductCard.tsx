@@ -24,6 +24,7 @@ export default function ProductCard({ product }: Props) {
         setLoading(true);
         try {
             const { data } = await addProduct(productId)
+            console.log(data)
             setBasket(data)
             setLoading(false);
             toast.success("Added product to basket!");
