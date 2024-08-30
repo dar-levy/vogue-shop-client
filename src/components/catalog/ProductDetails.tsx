@@ -42,11 +42,6 @@ export default function ProductDetails() {
         fetchProduct();
     }, [id, item]);
 
-    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-        if (parseInt(event.currentTarget.value) >= 0)
-            setQuantity(parseInt(event.currentTarget.value));
-    }
-
     async function handleUpdateCart() {
         if (!product) return;
         setSubmitting(true);
@@ -122,27 +117,13 @@ export default function ProductDetails() {
                                 <TableCell>Brand</TableCell>
                                 <TableCell>{product.brand}</TableCell>
                             </TableRow>
-                            <TableRow>
-                                <TableCell>Quantity in stock</TableCell>
-                                <TableCell>{product.quantityInStock}</TableCell>
-                            </TableRow>
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={6}>
-                        <TextField
-                            onChange={handleInputChange}
-                            variant={'outlined'}
-                            type={'number'}
-                            label={'Quantity in Cart'}
-                            fullWidth
-                            value={quantity}
-                        />
-                    </Grid>
+                <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
                     <Grid item xs={4}>
                         <LoadingButton
-                            disabled={item?.quantity === quantity || !item && quantity === 0}
+                            disabled={() => item ? true : false}
                             loading={submitting}
                             onClick={handleUpdateCart}
                             sx={{ height: '55px' }}
@@ -150,7 +131,7 @@ export default function ProductDetails() {
                             size={'large'}
                             variant={'contained'}
                             fullWidth>
-                            {item ? 'Update Quantity' : 'Add to Cart'}
+                            {item ? 'Already in basket' : 'Add to Cart'}
                         </LoadingButton>
                     </Grid>
                     {isAdmin && (

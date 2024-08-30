@@ -6,5 +6,4 @@ export interface Product {
     price: number,
     brand: string,
     type?: string,
-    quantityInStock?: number
 }
