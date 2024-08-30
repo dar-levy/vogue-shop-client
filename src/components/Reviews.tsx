@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Box, Paper, Typography, Rating } from '@mui/material';
 import { useStoreContext } from '../context/StoreContext';
-import agent from "../services/agent.ts";
+import {getReviews} from "../services/reviewsService.ts";
+import {toast} from "react-toastify";
 
 export interface Review {
     id: number;
@@ -14,14 +15,16 @@ const Reviews: React.FC = () => {
     const { reviews, setReviews } = useStoreContext();
 
     useEffect(() => {
-        const fetchedReviews: Review[] = agent.Reviews.get()
-        setReviews(fetchedReviews);
-        // try {
-        //     const { data } = await getReviews()
-        //     setReviews(data);
-        // } catch (err) {
-        //     toast.error("Could not get the products");
-        // }
+        const fetchReviews = async () => {
+            try {
+                const { data } = await getReviews()
+                setReviews(data);
+            } catch (e) {
+                toast.error("Could not get the products");
+            }
+        }
+
+        fetchReviews();
     }, [setReviews]);
 
     return (

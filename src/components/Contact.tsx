@@ -3,6 +3,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import {getContact} from "../services/contactService.ts";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 export default function ContactPage() {
     const [description, setDescription] = useState('');
