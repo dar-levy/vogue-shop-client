@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography, IconButton } from '@mui/material';
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Product } from "../../models/product.ts";
 import { LoadingButton } from '@mui/lab';
@@ -21,14 +21,12 @@ export default function ProductDetails() {
     const { basket, setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
-    const [quantity, setQuantity] = useState(0);
     const [submitting, setSubmitting] = useState(false);
     const item = basket?.items.find(i => i.productId === product?.id);
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                if (item) setQuantity(item.quantity);
                 if (id) {
                     const {data} = await getProduct(id);
                     setProduct(data);
@@ -45,30 +43,17 @@ export default function ProductDetails() {
     async function handleUpdateCart() {
         if (!product) return;
         setSubmitting(true);
-        if (!item || quantity > item?.quantity) {
-            const updatedQuantity = item ? quantity - item.quantity : quantity;
-            try {
-                const { data } = await addProduct(product.id, updatedQuantity)
-                setBasket(data)
-                toast.success("Added product to basket!");
-                navigate('/catalog');
-            } catch (e) {
-                toast.error("Couldn't add product");
-            } finally {
-                setSubmitting(false);
-            }
-        } else {
-            const updatedQuantity = item.quantity - quantity;
-            try {
-                const { data } = await removeProduct(product.id, updatedQuantity)
-                setBasket(data)
-                toast.success("Removed product from basket!");
-                navigate('/catalog');
-            } catch (e) {
-                toast.error("Couldn't remove product");
-            } finally {
-                setSubmitting(false);
-            }
+        try {
+            const { data } = await addProduct(product.id)
+            setBasket(data)
+            toast.success("Added product to basket!");
+            setTimeout(() => {
+                window.location = "/";
+            }, 500);
+        } catch (e) {
+            toast.error("Couldn't add product");
+        } finally {
+            setSubmitting(false);
         }
     }
 

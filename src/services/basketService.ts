@@ -3,19 +3,19 @@ import config from "../config.json";
 
 const apiEndpoint = config.apiUrl + "/basket";
 
-function basketUrl(id: number) {
-    return `${apiEndpoint}/:${id}`;
+function basketUrl(id: string) {
+    return `${apiEndpoint}/${id}`;
 }
 
 export function getBasket() {
     return http.get(`${apiEndpoint}`);
 }
 
-export function addProduct(id: number) {
+export function addProduct(id: string) {
     return http.post(basketUrl(id));
 }
 
-export function removeProduct(id: number) {
+export function removeProduct(id: string) {
     return http.delete(basketUrl(id));
 }
 
