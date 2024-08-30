@@ -80,7 +80,10 @@ export default function ProductDetails() {
     function handleDeleteProduct() {
         if (!product) return;
         handleRemoveItem(product.id);
-        window.location = "/"
+        toast.success("Deleted product!");
+        setTimeout(() => {
+            window.location = "/";
+        }, 500);
     }
 
     if (loading) return <Loading message='Loading product...' />
