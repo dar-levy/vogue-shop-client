@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box, Typography, Avatar } from '@mui/material';
 import { useStoreContext } from '../context/StoreContext';
 import {getNewArrivals} from "../services/newArrivalsService.ts";
 import {toast} from "react-toastify";
+import Loading from "./Loading.tsx";
 
 export const NewArrivals: React.FC = () => {
+    const [loading, setLoading] = useState(true);
     const { newArrivals, setNewArrivals } = useStoreContext();
 
     useEffect(() => {
@@ -15,11 +17,15 @@ export const NewArrivals: React.FC = () => {
             }
             catch (e) {
                 toast.error("Could not get the new arrivals");
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchNewArrivals();
     }, [setNewArrivals]);
+
+    if (loading) return <Loading message='Loading...' />
 
     return (
         <Box

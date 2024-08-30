@@ -3,20 +3,22 @@ import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
 import { ActivityHistory } from "../models/activity-history.ts";
 import {toast} from "react-toastify";
 import {getActivityHistory} from "../services/activityHistoryService.ts";
+import Loading from "./Loading.tsx";
 
 const ActivityHistoryComponent: React.FC = () => {
+    const [loading, setLoading] = useState(true);
     const [activityHistory, setActivityHistory] = useState<ActivityHistory[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        // const data = agent.ActivityHistory.get();
-        // setActivityHistory(data);
         const fetchHistory = async () => {
             try {
                 const { data } = await getActivityHistory()
                 setActivityHistory(data);
             } catch (err) {
                 toast.error("Could not get the activity history");
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -26,6 +28,8 @@ const ActivityHistoryComponent: React.FC = () => {
     const filteredActivityHistory = activityHistory.filter(activity =>
         activity.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    if (loading) return <Loading message='Loading...' />
 
     return (
         <Box sx={{ padding: '30px', overflowX: 'auto' }}>

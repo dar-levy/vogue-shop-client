@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductsGrid from "./ProductsGrid.tsx";
 import Loading from '../Loading.tsx';
-import agent from "../../services/agent.ts";
 import { useStoreContext } from "../../context/StoreContext.tsx";
 import { useNavigate } from 'react-router-dom';
 import { Fab } from '@mui/material';

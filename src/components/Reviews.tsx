@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box, Paper, Typography, Rating } from '@mui/material';
 import { useStoreContext } from '../context/StoreContext';
 import {getReviews} from "../services/reviewsService.ts";
 import {toast} from "react-toastify";
+import Loading from "./Loading.tsx";
 
 export interface Review {
     id: number;
@@ -12,6 +13,7 @@ export interface Review {
 }
 
 const Reviews: React.FC = () => {
+    const [loading, setLoading] = useState(true);
     const { reviews, setReviews } = useStoreContext();
 
     useEffect(() => {
@@ -21,11 +23,15 @@ const Reviews: React.FC = () => {
                 setReviews(data);
             } catch (e) {
                 toast.error("Could not get the products");
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchReviews();
     }, [setReviews]);
+
+    if (loading) return <Loading message='Loading...' />
 
     return (
         <Box

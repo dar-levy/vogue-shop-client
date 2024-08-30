@@ -1,9 +1,11 @@
 import { Container, Typography } from '@mui/material';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getAbout} from "../services/aboutService.ts";
 import {toast} from "react-toastify";
+import Loading from "./Loading.tsx";
 
 export default function AboutPage() {
+    const [loading, setLoading] = useState(true);
     const [description, setDescription] = useState<string>();
 
     useEffect(() => {
@@ -14,11 +16,15 @@ export default function AboutPage() {
             }
             catch (e) {
                 toast.error("Could not get the description");
+            } finally {
+                setLoading(false)
             }
         }
 
         fetchAbout()
     }, []);
+
+    if (loading) return <Loading message='Loading...' />
 
     return (
         <Container>

@@ -4,8 +4,10 @@ import EmailIcon from '@mui/icons-material/Email';
 import {getContact} from "../services/contactService.ts";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import Loading from "./Loading.tsx";
 
 export default function ContactPage() {
+    const [loading, setLoading] = useState(true);
     const [description, setDescription] = useState('');
 
     useEffect(() => {
@@ -15,11 +17,15 @@ export default function ContactPage() {
                 setDescription(data);
             } catch (err) {
                 toast.error("Could not get contact info");
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchDescription()
     }, []);
+
+    if (loading) return <Loading message='Loading...' />
 
     return (
         <Container>
