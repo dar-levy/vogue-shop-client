@@ -75,7 +75,6 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         try {
             await deleteProduct(productId);
             setProducts(() => products.filter(p => p.id !== productId));
-            navigate('/catalog');
             toast.success("Successfully deleted");
         } catch (ex) {
             if (ex.response && ex.response.status === 404) console.log("x");
