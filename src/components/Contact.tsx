@@ -1,18 +1,24 @@
 import { Box, Container, Grid, Typography, Link } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import {getContact} from "../services/contactService.ts";
+import {useEffect, useState} from "react";
 
 export default function ContactPage() {
-    // const [description, setDescription] = useState('');
-    //
-    // useEffect(() => {
-    //     try {
-    //         const { data } = await getContact()
-    //         setDescription(data);
-    //     } catch (err) {
-    //         toast.error("Could not get contact info");
-    //     }
-    // }, []);
+    const [description, setDescription] = useState('');
+
+    useEffect(() => {
+        const fetchDescription = async () => {
+            try {
+                const { data } = await getContact()
+                setDescription(data);
+            } catch (err) {
+                toast.error("Could not get contact info");
+            }
+        }
+
+        fetchDescription()
+    }, []);
 
     return (
         <Container>
@@ -20,7 +26,7 @@ export default function ContactPage() {
                 Contact Us
             </Typography>
             <Typography variant="body1" color="text.primary" paragraph>
-                We would love to hear from you! Whether you have a question about our products, services, pricing, or anything else, our team is ready to answer all your questions.
+                {description}
             </Typography>
             <Box mt={4}>
                 <Typography variant="h4" color="text.primary" gutterBottom>
