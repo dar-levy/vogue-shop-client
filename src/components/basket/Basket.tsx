@@ -1,11 +1,11 @@
 import { Box, Grid, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { Add, Delete, Remove } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import { useState } from 'react';
 import { useStoreContext } from "../../context/StoreContext.tsx";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Summary from './Summary.tsx';
 import { Link } from 'react-router-dom';
-import {addProduct, removeProduct} from "../../services/basketService.ts";
+import {removeProduct} from "../../services/basketService.ts";
 import {toast} from "react-toastify";
 
 export default function Basket() {
@@ -14,19 +14,6 @@ export default function Basket() {
         loading: false,
         name: ''
     });
-
-    async function handleAddItem(productId: number, name: string) {
-        try {
-            setStatus({ loading: true, name });
-            const { data } = await addProduct(productId)
-            setBasket(data)
-            toast.success("Added product to basket!");
-        } catch (e) {
-            toast.error("Couldn't add product");
-        } finally {
-            setStatus({ loading: false, name: '' })
-        }
-    }
 
     async function handleRemoveItem(productId: number, name: string) {
         try {
