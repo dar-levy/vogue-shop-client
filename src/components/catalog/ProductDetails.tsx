@@ -5,7 +5,6 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Product } from "../../models/product.ts";
-import agent from "../../services/agent.ts";
 import { LoadingButton } from '@mui/lab';
 import { useStoreContext } from "../../context/StoreContext.tsx";
 import NotFound from "../NotFound.tsx";
@@ -13,6 +12,7 @@ import Loading from '../Loading.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {addProduct, removeProduct} from "../../services/basketService.ts";
 import {toast} from "react-toastify";
+import {getProduct} from "../../services/productService.ts";
 
 
 export default function ProductDetails() {
@@ -26,21 +26,20 @@ export default function ProductDetails() {
     const item = basket?.items.find(i => i.productId === product?.id);
 
     useEffect(() => {
-        if (item) setQuantity(item.quantity);
-        if (id) {
-            setProduct(agent.Catalog.details(id));
-            setLoading(false);
+        const fetchProduct = async () => {
+            try {
+                if (item) setQuantity(item.quantity);
+                if (id) {
+                    const {data} = await getProduct(id);
+                    setProduct(data);
+                    setLoading(false);
+                }
+            } catch (err) {
+                return this.props.navigate("/not-found");
+            }
         }
-        // try {
-        //     if (item) setQuantity(item.quantity);
-        //     if (id) {
-        //         const {data} = await getProduct(parseInt(id));
-        //         setProduct(data);
-        //         setLoading(false);
-        //     }
-        // } catch (err) {
-        //     return this.props.navigate("/not-found");
-        // }
+
+        fetchProduct();
     }, [id, item]);
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {

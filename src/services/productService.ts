@@ -4,7 +4,7 @@ import {Product} from "../models/product.ts";
 
 const apiEndpoint = config.apiUrl + "/products";
 
-function productUrl(id: number) {
+function productUrl(id: string) {
     return `${apiEndpoint}/${id}`;
 }
 
@@ -12,11 +12,11 @@ export function getProducts() {
     return http.get(`${apiEndpoint}`);
 }
 
-export function getProduct(id: number) {
+export function getProduct(id: string) {
     return http.get(productUrl(id));
 }
 
-export function deleteProduct(id: number) {
+export function deleteProduct(id: string) {
     return http.delete(productUrl(id));
 }
 
