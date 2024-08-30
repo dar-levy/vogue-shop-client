@@ -59,7 +59,7 @@ export default function Checkout() {
                         <>
                             <Box display="flex" justifyContent="space-between" mt={4}>
                                 <Typography variant="h6">Total</Typography>
-                                <Typography variant="h6">₪{basket.items.reduce((acc, item) => acc + item.price * item.quantity, 0)}</Typography>
+                                <Typography variant="h6">₪{basket.items.reduce((acc, item) => acc + item.price, 0)}</Typography>
                             </Box>
                             <Button
                                 variant="contained"
