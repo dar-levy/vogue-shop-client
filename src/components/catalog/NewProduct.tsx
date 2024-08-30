@@ -2,13 +2,11 @@
 // @ts-nocheck
 
 import Joi from "joi-browser";
-import { toast } from "react-toastify";
 import Form from "../common/Form.tsx";
 import {Avatar, Box, Container, Typography} from "@mui/material";
 import React from "react";
 import * as config from "../../config.json"
 import { v4 as uuidv4 } from 'uuid';
-import { saveProduct } from "../../services/productService.ts";
 
 
 class NewProduct extends Form {

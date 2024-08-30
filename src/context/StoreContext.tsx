@@ -85,9 +85,10 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
 
     async function handleAddNewProduct(product: Product) {
         try {
-            await saveProduct(this.state.data);
+            console.log(product);
+            await saveProduct(product);
             setProducts([...products, product])
-            window.location("/catalog");
+            window.location = "/catalog";
             toast.success("Saved successfully.");
         } catch (err) {
             toast.error("Could not save the product");
