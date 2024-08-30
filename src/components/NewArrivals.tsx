@@ -1,15 +1,24 @@
 import React, { useEffect } from 'react';
 import { Box, Typography, Avatar } from '@mui/material';
 import { useStoreContext } from '../context/StoreContext';
-import {NewArrival} from "../models/new-arrival.ts";
-import agent from "../services/agent.ts";
+import {getNewArrivals} from "../services/newArrivalsService.ts";
+import {toast} from "react-toastify";
 
 export const NewArrivals: React.FC = () => {
     const { newArrivals, setNewArrivals } = useStoreContext();
 
     useEffect(() => {
-        const fetchedNewArrivals: NewArrival[] = agent.NewArrivals.get()
-        setNewArrivals(fetchedNewArrivals);
+        const fetchNewArrivals = async () => {
+            try {
+                const { data } = await getNewArrivals();
+                setNewArrivals(data);
+            }
+            catch (e) {
+                toast.error("Could not get the new arrivals");
+            }
+        }
+
+        fetchNewArrivals();
     }, [setNewArrivals]);
 
     return (
@@ -56,7 +65,7 @@ export const NewArrivals: React.FC = () => {
                         {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Arrival Date: {product.arrivalDate.toDateString()}
+                        Arrival Date: {product.arrivalDate}
                     </Typography>
                 </Box>
             ))}

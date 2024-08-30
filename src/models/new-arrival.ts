@@ -5,5 +5,5 @@ export interface NewArrival {
     pictureUrl: string,
     brand: string;
     type?: string,
-    arrivalDate: Date;
+    arrivalDate: string;
 }
