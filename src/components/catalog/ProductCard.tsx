@@ -19,6 +19,8 @@ interface Props {
 export default function ProductCard({ product }: Props) {
     const { setBasket, handleRemoveItem, isAdmin } = useStoreContext();
     const [loading, setLoading] = useState(false);
+    const { basket } = useStoreContext();
+    const item = basket?.items.find(i => i.productId === product?.id);
 
     async function handleAddItem(productId: number) {
         setLoading(true);
@@ -65,6 +67,7 @@ export default function ProductCard({ product }: Props) {
             </CardContent>
             <CardActions>
                 <LoadingButton
+                    disabled={item}
                     loading={loading}
                     onClick={() => handleAddItem(product.id)}
                     size="small">Add to Cart</LoadingButton>
