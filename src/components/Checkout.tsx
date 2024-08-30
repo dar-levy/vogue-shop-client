@@ -28,9 +28,9 @@ export default function Checkout() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Product</TableCell>
+                                    <TableCell>Type</TableCell>
+                                    <TableCell>Brand</TableCell>
                                     <TableCell align="right">Price</TableCell>
-                                    <TableCell align="right">Quantity</TableCell>
-                                    <TableCell align="right">Subtotal</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -38,9 +38,9 @@ export default function Checkout() {
                                     basket.items.map((item) => (
                                         <TableRow key={item.productId}>
                                             <TableCell>{item.name}</TableCell>
+                                            <TableCell>{item.type}</TableCell>
+                                            <TableCell>{item.brand}</TableCell>
                                             <TableCell align="right">₪{item.price}</TableCell>
-                                            <TableCell align="right">{item.quantity}</TableCell>
-                                            <TableCell align="right">₪{item.price * item.quantity}</TableCell>
                                         </TableRow>
                                     ))
                                 ) : (
