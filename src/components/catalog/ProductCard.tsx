@@ -67,7 +67,7 @@ export default function ProductCard({ product }: Props) {
             </CardContent>
             <CardActions>
                 <LoadingButton
-                    disabled={item}
+                    disabled={item ? true : false}
                     loading={loading}
                     onClick={() => handleAddItem(product.id)}
                     size="small">Add to Cart</LoadingButton>
