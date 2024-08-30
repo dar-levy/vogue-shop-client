@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, TextField } from '@mui/material';
 import { ActivityHistory } from "../models/activity-history.ts";
-import agent from "../services/agent.ts";
+import {toast} from "react-toastify";
+import {getActivityHistory} from "../services/activityHistoryService.ts";
 
 const ActivityHistoryComponent: React.FC = () => {
     const [activityHistory, setActivityHistory] = useState<ActivityHistory[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        const data = agent.ActivityHistory.get();
-        setActivityHistory(data);
-        // try {
-        //     const { data } = await getActivityHistory()
-        //     setActivityHistory(data);
-        // } catch (err) {
-        //     toast.error("Could not get the activity history");
-        // }
+        // const data = agent.ActivityHistory.get();
+        // setActivityHistory(data);
+        const fetchHistory = async () => {
+            try {
+                const { data } = await getActivityHistory()
+                setActivityHistory(data);
+            } catch (err) {
+                toast.error("Could not get the activity history");
+            }
+        }
+
+        fetchHistory();
     }, []);
 
     const filteredActivityHistory = activityHistory.filter(activity =>
-        activity.name.toLowerCase().includes(searchTerm.toLowerCase())
+        activity.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -40,7 +45,6 @@ const ActivityHistoryComponent: React.FC = () => {
                 <Table sx={{ tableLayout: 'auto', width: '100%' }} aria-label="activity history table">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize: '1.25rem', whiteSpace: 'nowrap' }}>ID</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1.25rem', whiteSpace: 'nowrap' }}>Name</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1.25rem', whiteSpace: 'nowrap' }}>Type</TableCell>
                             <TableCell sx={{ fontWeight: 'bold', fontSize: '1.25rem', whiteSpace: 'nowrap' }}>Timestamp</TableCell>
@@ -49,7 +53,7 @@ const ActivityHistoryComponent: React.FC = () => {
                     <TableBody>
                         {filteredActivityHistory.map((activity) => (
                             <TableRow
-                                key={activity.id}
+                                key={activity.username}
                                 sx={{
                                     '&:hover': {
                                         transform: 'scale(1.002)',
@@ -60,12 +64,9 @@ const ActivityHistoryComponent: React.FC = () => {
                                     fontSize: '1.25rem',
                                 }}
                             >
-                                <TableCell component="th" scope="row">
-                                    {activity.id}
-                                </TableCell>
-                                <TableCell>{activity.name}</TableCell>
-                                <TableCell>{activity.type}</TableCell>
-                                <TableCell>{activity.timestamp.toDateString()}</TableCell>
+                                <TableCell>{activity.username}</TableCell>
+                                <TableCell>{activity.activity_type}</TableCell>
+                                <TableCell>{activity.timestamp}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

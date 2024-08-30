@@ -1,9 +1,8 @@
 import {Basket} from "./basket.ts";
 
 export interface ActivityHistory {
-    id: number,
-    name: string,
-    type: string,
-    timestamp: Date,
+    username: string,
+    activity_type: string,
+    timestamp: string,
     basket: Basket;
 }
