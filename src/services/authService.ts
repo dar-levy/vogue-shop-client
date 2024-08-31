@@ -11,8 +11,8 @@ export async function login(username, password, rememberMe) {
     return data;
 }
 
-export function logout() {
-    http.post(`${config.apiUrl}/logout`)
+export async function logout() {
+    await http.post(`${config.apiUrl}/logout`)
 }
 
 export function getCurrentUser() {
