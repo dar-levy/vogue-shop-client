@@ -11,7 +11,7 @@ import {User} from "../models/user.ts";
 import config from "../config.json";
 import {toast} from "react-toastify";
 import {deleteProduct, saveProduct} from "../services/productService.ts";
-import {removeProduct} from "../services/basketService.ts";
+import {clearBasket, removeProduct} from "../services/basketService.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -104,8 +104,14 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
-    function clearItems() {
-        setBasket(null);
+    async function clearItems() {
+        try {
+            await clearBasket()
+            setBasket(null);
+        }
+        catch (e) {
+            toast.error("Could not clear the basket");
+        }
     }
 
     return (
