@@ -34,6 +34,7 @@ class LoginForm extends Form {
                 errors.username = ex.response.data;
                 this.setState({ errors });
             }
+            toast.error(ex.response.data);
         }
     };
 
