@@ -25,7 +25,9 @@ class LoginForm extends Form {
             const { data } = this.state;
             await auth.login(data.username, data.password, data.rememberMe);
             toast.success("Successfully Logged In");
-            window.location = "/";
+            setTimeout(() => {
+                window.location = "/";
+            }, 500);
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 const errors = { ...this.state.errors };

@@ -23,8 +23,10 @@ class RegisterForm extends Form {
   doSubmit = async () => {
     try {
       await userService.register(this.state.data);
-      window.location = "/";
       toast.success("Successfully Registered");
+        setTimeout(() => {
+            window.location = "/";
+        }, 500);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
