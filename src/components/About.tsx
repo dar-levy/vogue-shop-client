@@ -1,5 +1,5 @@
 import { Container, Typography } from '@mui/material';
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {getAbout} from "../services/aboutService.ts";
 import {toast} from "react-toastify";
 import Loading from "./Loading.tsx";
