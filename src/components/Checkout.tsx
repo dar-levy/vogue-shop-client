@@ -2,10 +2,15 @@ import { Box, Button, Grid, Paper, Typography, Table, TableBody, TableCell, Tabl
 import { useStoreContext } from "../context/StoreContext.tsx";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import {currencyFormat} from "../utils/util.ts";
 
 export default function Checkout() {
     const { basket, clearItems } = useStoreContext();
     const navigate = useNavigate();
+    const subtotal = (basket?.items.reduce((sum, item) => sum + Math.round(parseFloat(item.price) * 100), 0) / 100).toFixed(1) ?? 0;
+    const deliveryFee = subtotal > 500 ? 0 : 50;
+    const totalWithFee = parseFloat(subtotal) + deliveryFee;
+
 
     const handlePayment = () => {
         setTimeout(() => {
@@ -59,7 +64,7 @@ export default function Checkout() {
                         <>
                             <Box display="flex" justifyContent="space-between" mt={4}>
                                 <Typography variant="h6">Total</Typography>
-                                <Typography variant="h6">₪{basket.items.reduce((acc, item) => acc + item.price, 0)}</Typography>
+                                <Typography variant="h6">{currencyFormat(totalWithFee)}</Typography>
                             </Box>
                             <Button
                                 variant="contained"
