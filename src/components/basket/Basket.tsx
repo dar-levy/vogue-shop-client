@@ -43,7 +43,7 @@ export default function Basket() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {basket ? (
+                            {basket && basket.items.length > 0 ? (
                                 basket.items.map((item) => (
                                     <TableRow
                                         key={item.productId}
