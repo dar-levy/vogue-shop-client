@@ -41,7 +41,7 @@ interface Props {
 
 export default function Header({ handleThemeChange, darkMode, isAuthenticated }: Props) {
     const {basket, isAdmin, user} = useStoreContext();
-    const itemCount = basket?.items.reduce((sum, item) => sum + 1, 0);
+    const itemCount = basket?.items.reduce((sum) => sum + 1, 0);
 
     return (
         <AppBar position='static' sx={{
@@ -122,7 +122,6 @@ export default function Header({ handleThemeChange, darkMode, isAuthenticated }:
                         ))}
                     </List>
                 </Box>
-
             </Toolbar>
         </AppBar>
     );

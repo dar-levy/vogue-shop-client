@@ -15,7 +15,7 @@ export default function Basket() {
         name: ''
     });
 
-    async function handleRemoveItem(productId: number, name: string) {
+    async function handleRemoveItem(productId: string, name: string) {
         try {
             setStatus({ loading: true, name });
             const { data } = await removeProduct(productId)
@@ -43,7 +43,7 @@ export default function Basket() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {basket ? (
+                            {basket && basket.items.length > 0 ? (
                                 basket.items.map((item) => (
                                     <TableRow
                                         key={item.productId}

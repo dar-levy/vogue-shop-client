@@ -7,8 +7,8 @@ import Cookies from "js-cookie";
 import config from "../config.json";
 
 class LogoutForm extends Component {
-  componentDidMount() {
-    auth.logout();
+  async componentDidMount() {
+    await auth.logout();
     Cookies.remove(config.cookieName);
     window.location = "/";
   }

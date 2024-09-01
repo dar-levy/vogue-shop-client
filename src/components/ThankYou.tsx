@@ -1,4 +1,5 @@
 import { Grid, Paper, Typography } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ThankYou() {
     return (
@@ -20,7 +21,7 @@ export default function ThankYou() {
                         Your payment was successful.
                     </Typography>
                     <Typography variant="body1" gutterBottom>
-                        Your payment ID is: <strong>1234567890</strong>
+                        Your payment ID is: <strong>{uuidv4()}</strong>
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
                         Please keep this ID for your records.

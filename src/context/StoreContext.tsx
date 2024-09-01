@@ -11,6 +11,7 @@ import {User} from "../models/user.ts";
 import config from "../config.json";
 import {toast} from "react-toastify";
 import {deleteProduct, saveProduct} from "../services/productService.ts";
+import {clearBasket, removeProduct} from "../services/basketService.ts";
 
 interface StoreContextValue {
     removeItem: (productId: number, quantity: number) => void;
@@ -71,10 +72,17 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
-    async function handleRemoveItem(productId: number) {
+    async function handleRemoveItem(productId: string) {
+        const itemInBasket = basket?.items.some(item => item.productId === productId);
+        console.log(itemInBasket)
+
         try {
             await deleteProduct(productId);
             setProducts(() => products.filter(p => p.id !== productId));
+            if (itemInBasket) {
+                await removeProduct(productId);
+                setBasket(() => basket?.items.filter(p => p.productId !== productId));
+            }
             toast.success("Successfully deleted");
         } catch (ex) {
             if (ex.response && ex.response.status === 404) console.log("x");
@@ -96,8 +104,14 @@ export function StoreProvider({ children }: PropsWithChildren<unknown>) {
         }
     }
 
-    function clearItems() {
-        setBasket(null);
+    async function clearItems() {
+        try {
+            await clearBasket()
+            setBasket(null);
+        }
+        catch (e) {
+            toast.error("Could not clear the basket");
+        }
     }
 
     return (

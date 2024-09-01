@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header.tsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import agent from "./services/agent.ts";
 import {useStoreContext} from "./context/StoreContext.tsx";
 import Loading from './components/Loading.tsx';
 import AppRoutes from "./router/Routes.tsx";
+import { getBasket } from './services/basketService.ts';
 
 function App() {
   const { setBasket, isAuthenticated } = useStoreContext();
@@ -29,20 +29,17 @@ function App() {
   });
 
   useEffect(() => {
-    setBasket(agent.Basket.get());
-    setLoading(false);
-    // const fetchBasket = async () => {
-    //     try {
-    //       const { data } = await getBasket()
-    //       console.log("fetchBasket", data)
-    //       setBasket(data)
-    //       setLoading(false)
-    //     } catch (err) {
-    //       setLoading(false)
-    //     }
-    // }
-    //
-    // fetchBasket();
+    const fetchBasket = async () => {
+        try {
+          const { data } = await getBasket()
+          setBasket(data)
+          setLoading(false)
+        } catch (err) {
+          setLoading(false)
+        }
+    }
+    
+    fetchBasket();
   }, []);
 
   function handleThemeChange() {
