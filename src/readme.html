@@ -80,5 +80,18 @@
     <li>To further enhance security, we used a salt to generate hash values. This ensures that two identical passwords do not produce the same hash. We stored the salt used for each user and utilized it to generate the hashed password when validating user identity.</li>
     <li>To protect against DDoS attacks, we implemented a rate-limiting feature, allowing a certain number of requests from an IP address within a specific time window. In our case, we set a limit of 100 requests every 3 minutes.</li>
 </ul>
+<h2>How to Run the Project:</h2>
+<p>First, we need to start the backend server.</p>
+<p>1. Navigate to the backend server folder "vogue-shop-BE" and open the terminal.</p>
+<p>2. Run the command <code>npm install</code> to install the necessary dependencies.</p>
+<p>3. Run the command <code>node server.js</code> and wait until the server indicates it is running.</p>
+
+<p>Secondly, we need to start the frontend service.</p>
+<p>1. Navigate to the frontend service folder "vogue-shop-client" and open the terminal.</p>
+<p>2. Run the command <code>npm install</code> to install the necessary dependencies.</p>
+<p>3. Run the command <code>npm run dev</code> and wait until the service indicates it is running.</p>
+
+<p>Once both services are up and running, you can access the application at <a href="http://localhost:5173/">http://localhost:5173/</a>.</p>
+<p><strong>Have Fun!</strong></p>
 </body>
 </html>
