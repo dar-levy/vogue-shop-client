@@ -33,16 +33,19 @@
 <h2>Additional Pages Added</h2>
 <p>We added several additional pages to enhance the user experience:</p>
 <ul>
-    <li><strong>About</strong></li>
-    <li><strong>Contact</strong></li>
-    <li><strong>New Arrivals</strong></li>
-    <li><strong>Reviews</strong></li>
+    <li><strong>About</strong> - Displays a description of the shop, which is fetched from the backend server.</li>
+    <li><strong>Contact</strong> - Provides information on how to contact us, the website developers. This data is also fetched from the backend server.</li>
+    <li><strong>New Arrivals</strong> - Shows the shop's upcoming new arrivals. The data is retrieved from the backend server in JSON format.</li>
+    <li><strong>Reviews</strong> - Displays reviews about the website written by users. The data is fetched from the backend server in JSON format.</li>
 </ul>
 <p>These pages can be accessed by clicking on the corresponding links in the navbar header. They operate just like any other page, displaying their contents when selected.</p>
 
 <h2>Challenges Faced</h2>
 <p>One of the hardest parts of this project was <strong>storing data globally using React Store Context</strong>. Ensuring data was available across different components and routes was a challenging but rewarding task.</p>
-
+<p>Another challenge we faced was coordinating our work schedules. I was on heavy military reserve duty, which limited my ability to work on the project to when I was home. Meanwhile, Ziv had just started a new job, which also demanded much of his time. To overcome this, we began using Git to synchronize our work, which greatly improved our communication and allowed us to track what needed to be done and what had already been completed. You can view our progress at:</p>
+<a href="https://github.com/dar-levy/vogue-shop-BE.git.">vogue-shop-BE</a>
+<br>
+<a href="//github.com/dar-levy/vogue-shop-client.git">vogue-shop-client</a>
 <h2>Team Members and Contributions</h2>
 <p><strong>Me:</strong> Dar Levy [ID: 313418857]</p>
 <p><strong>Partner:</strong> Ziv Somech [ID: 318423936]</p>
@@ -68,6 +71,14 @@
     <li><code>/register</code> - Allows new users to create an account.</li>
     <li><code>/login</code> - Allows existing users to log in.</li>
     <li><code>/</code> - Redirects to the <code>/catalog</code> route if logged in, or <code>/login</code> if not.</li>
+</ul>
+<h2>Additional Features</h2>
+<p>We implemented the following extra features in our work:</p>
+<ul>
+    <li>We integrated the admin panel into the catalog feed, allowing the admin to directly manage products from the <code>/catalog</code> route when logged in.</li>
+    <li>For added security, we did not store users' plaintext passwords. Instead, we stored hashed versions of the passwords.</li>
+    <li>To further enhance security, we used a salt to generate hash values. This ensures that two identical passwords do not produce the same hash. We stored the salt used for each user and utilized it to generate the hashed password when validating user identity.</li>
+    <li>To protect against DDoS attacks, we implemented a rate-limiting feature, allowing a certain number of requests from an IP address within a specific time window. In our case, we set a limit of 100 requests every 3 minutes.</li>
 </ul>
 </body>
 </html>
